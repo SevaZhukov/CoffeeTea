@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="intros">
+        <item>Текст для первого слайда</item>
+        <item>Для второго</item>
+        <item>Для последнего</item>
+    </string-array>
+</resources>

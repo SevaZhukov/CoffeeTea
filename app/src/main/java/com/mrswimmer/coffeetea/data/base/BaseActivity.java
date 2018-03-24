@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.utils.GlobalNavigator;
@@ -39,6 +40,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseV
         injectDependencies();
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        localRouter.newRootScreen(Screens.SIGN_IN_SCREEN);
     }
 
     @Override

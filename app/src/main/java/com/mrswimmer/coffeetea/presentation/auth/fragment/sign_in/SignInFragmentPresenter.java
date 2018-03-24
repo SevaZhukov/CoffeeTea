@@ -1,6 +1,7 @@
 package com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in;
 
 import android.content.SharedPreferences;
+import android.transition.Scene;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -8,6 +9,7 @@ import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
+import com.mrswimmer.coffeetea.domain.service.FireService;
 
 import javax.inject.Inject;
 
@@ -26,15 +28,28 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
     @Inject
     SharedPreferences settings;
 
+    @Inject
+    FireService fireService;
+
     public SignInFragmentPresenter() {
         App.getComponent().inject(this);
     }
 
-    public void enter(String email, String pass) {
+    void enter(String email, String pass) {
+        fireService.signIn(email, pass, new FireService.AuthCallBack() {
+            @Override
+            public void onSuccess(boolean success) {
+                globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
+            }
 
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
     }
 
-    public void gotoReg() {
+    void gotoReg() {
         router.navigateTo(Screens.SIGN_UP_SCREEN);
     }
 }

@@ -4,22 +4,8 @@ import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.base.BaseActivity;
 import com.mrswimmer.coffeetea.data.settings.Screens;
-import com.mrswimmer.coffeetea.di.qualifier.Local;
-
-import javax.inject.Inject;
-
-import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.Router;
 
 public class AuthActivity extends BaseActivity {
-
-    @Inject
-    @Local
-    NavigatorHolder mNavigatorHolder;
-
-    @Inject
-    @Local
-    Router router;
 
     @Override
     protected int getLayoutId() {

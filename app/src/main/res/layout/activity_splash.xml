@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="36sp" />
+        android:textSize="50sp" />
 
     <TextView
         android:layout_width="wrap_content"

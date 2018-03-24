@@ -1,11 +1,11 @@
 package com.mrswimmer.coffeetea.presentation.splash;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.mrswimmer.coffeetea.App;
@@ -16,7 +16,7 @@ import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
     @Inject
     SharedPreferences settings;
@@ -45,5 +45,4 @@ public class SplashActivity extends Activity {
             }
         }, 2000);
     }
-
 }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -25,7 +26,13 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
         return presenter;
     }
 
-    String sUsername, sPassword;
+    String email, password;
+
+    @BindView(R.id.sign_in_email)
+    EditText editEmail;
+    @BindView(R.id.sign_in_password)
+    EditText editPass;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,20 +45,32 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
         ButterKnife.bind(this, view);
     }
 
+    @OnClick(R.id.sign_in_enter)
+    void onEnterClick() {
+        email = editEmail.getText().toString();
+        password = editPass.getText().toString();
+        enter();
+    }
+
+    @OnClick(R.id.sign_in_reg)
+    void onRegClick() {
+        presenter.gotoReg();
+    }
+
     @Override
     public void showErrorToast(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
-    void sendData() {
+    void enter() {
         if(checkOnFillingFields()) {
-            presenter.enter(sUsername, sPassword);
+            presenter.enter(email, password);
         } else {
             showErrorToast("Заполните все поля!");
         }
     }
     boolean checkOnFillingFields() {
-        if (sUsername.equals("") || sPassword.equals("")) {
+        if (email.equals("") || password.equals("")) {
             return false;
         }
         return true;

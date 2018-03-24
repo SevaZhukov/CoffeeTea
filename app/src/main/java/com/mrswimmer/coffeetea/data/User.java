@@ -1,8 +1,8 @@
 package com.mrswimmer.coffeetea.data;
 
 public class User {
-    String name;
-    String last;
+    private String name;
+    private String last;
 
     public User(String name, String last) {
         this.name = name;

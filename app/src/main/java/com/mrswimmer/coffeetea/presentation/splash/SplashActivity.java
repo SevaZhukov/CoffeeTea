@@ -10,7 +10,8 @@ import android.util.Log;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.presentation.MainActivity;
+import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
+import com.mrswimmer.coffeetea.presentation.main.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
 
 import javax.inject.Inject;
@@ -31,7 +32,7 @@ public class SplashActivity extends Activity {
             if(login.equals("no")){
                 overridePendingTransition(0,0);
                 TaskStackBuilder.create(getApplicationContext())
-                        .addNextIntentWithParentStack(new Intent(getApplicationContext(), MainActivity.class))
+                        .addNextIntentWithParentStack(new Intent(getApplicationContext(), AuthActivity.class))
                         .addNextIntent(new Intent(getApplicationContext(), IntroActivity.class))
                         .startActivities();
                 finish();

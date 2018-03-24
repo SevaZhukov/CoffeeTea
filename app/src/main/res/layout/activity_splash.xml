@@ -23,5 +23,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:text="by LAZH Corp"
-        android:textSize="18sp" />
+        android:textSize="12sp" />
 </RelativeLayout>

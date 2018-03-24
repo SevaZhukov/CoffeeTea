@@ -5,9 +5,13 @@ import android.support.annotation.Nullable;
 
 import com.mrswimmer.coffeetea.R;
 
+import javax.inject.Inject;
+
 import agency.tango.materialintroscreen.MaterialIntroActivity;
 
 public class IntroActivity extends MaterialIntroActivity {
+
+    @Inject
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

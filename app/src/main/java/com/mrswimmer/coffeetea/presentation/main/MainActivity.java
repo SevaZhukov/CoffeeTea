@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.presentation;
+package com.mrswimmer.coffeetea.presentation.main;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;

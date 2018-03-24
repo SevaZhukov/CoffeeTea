@@ -8,4 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CoffeeTea" parent="Theme.Design.NoActionBar" />
+
 </resources>

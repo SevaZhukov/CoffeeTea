@@ -5,7 +5,7 @@ import android.app.Application;
 import com.mrswimmer.coffeetea.di.AppComponent;
 import com.mrswimmer.coffeetea.di.DaggerAppComponent;
 import com.mrswimmer.coffeetea.di.module.SharedPreferencesModule;
-//add dev branch
+
 public class App extends Application {
     private static AppComponent component;
 

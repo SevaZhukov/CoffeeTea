@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/sign_up_email"
+        android:id="@+id/sign_in_email"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="76dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/sign_up_password"
+        android:id="@+id/sign_in_password"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -43,12 +43,12 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_email" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
 
     <Button
         android:id="@+id/sign_in_enter"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_background_transparent"
@@ -56,13 +56,13 @@
         app:layout_constraintBottom_toTopOf="@+id/sign_in_reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_password"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_password"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/sign_in_reg"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/white"
         android:text="Регистрация"
@@ -78,7 +78,7 @@
         android:layout_marginBottom="72dp"
         android:text="@string/miss"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"

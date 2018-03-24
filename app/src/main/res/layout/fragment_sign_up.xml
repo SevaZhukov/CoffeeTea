@@ -14,6 +14,7 @@
         android:ems="10"
         android:hint="Фамилия"
         android:inputType="textPersonName"
+        android:text="Жуков"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_first_name" />
@@ -25,6 +26,7 @@
         android:ems="10"
         android:hint="Имя в сети"
         android:inputType="textPersonName"
+        android:text="Batman"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
@@ -36,6 +38,7 @@
         android:ems="10"
         android:hint="Имя"
         android:inputType="textPersonName"
+        android:text="Севастьян"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_username" />
@@ -63,6 +66,7 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:text="sevastian0902@gmail.com"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -72,27 +76,35 @@
         android:id="@+id/sign_up_password"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Пароль"
         android:inputType="textPersonName"
+        android:text="qwerty"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_email" />
 
     <Button
-        android:id="@+id/sign_in_reg"
+        android:id="@+id/sign_up_reg"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/white"
         android:text="Регистрация"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_city_spinner"
+        app:layout_constraintVertical_bias="0.76" />
 
     <Spinner
-        android:id="@+id/sign_in_city_spinner"
+        android:id="@+id/sign_up_city_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"

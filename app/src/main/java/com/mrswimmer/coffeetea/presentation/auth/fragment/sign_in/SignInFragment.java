@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -23,7 +21,7 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
 
     @ProvidePresenter
     public SignInFragmentPresenter presenter() {
-        return presenter;
+        return new SignInFragmentPresenter();
     }
 
     String email, password;
@@ -63,16 +61,16 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
     }
 
     void enter() {
-        if(checkOnFillingFields()) {
+        if (checkOnFillingFields()) {
             presenter.enter(email, password);
         } else {
             showErrorToast("Заполните все поля!");
         }
     }
+
     boolean checkOnFillingFields() {
-        if (email.equals("") || password.equals("")) {
+        if (email.equals("") || password.equals(""))
             return false;
-        }
         return true;
     }
 }

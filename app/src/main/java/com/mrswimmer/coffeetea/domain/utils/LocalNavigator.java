@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
+import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -68,9 +69,9 @@ public class LocalNavigator extends SupportFragmentNavigator {
     private Fragment authFragments(String screenKey) {
         switch (screenKey) {
             case Screens.SIGN_IN_SCREEN :
-                return new SignInFragment();/*
+                return new SignInFragment();
             case Screens.SIGN_UP_SCREEN :
-                return new SignUpFragment();*/
+                return new SignUpFragment();
             default:
                 return new SignInFragment();
         }

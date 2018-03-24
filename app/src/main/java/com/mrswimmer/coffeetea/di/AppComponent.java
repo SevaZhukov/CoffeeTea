@@ -5,6 +5,7 @@ import com.mrswimmer.coffeetea.di.module.NavigatorModule;
 import com.mrswimmer.coffeetea.di.module.SharedPreferencesModule;
 import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
@@ -21,4 +22,6 @@ public interface AppComponent {
     void inject(AuthActivity authActivity);
 
     void inject(SignInFragmentPresenter signInFragmentPresenter);
+
+    void inject(SignUpFragmentPresenter signUpFragmentPresenter);
 }

@@ -11,7 +11,7 @@ import android.util.Log;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
-import com.mrswimmer.coffeetea.presentation.main.MainActivity;
+import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
 
 import javax.inject.Inject;

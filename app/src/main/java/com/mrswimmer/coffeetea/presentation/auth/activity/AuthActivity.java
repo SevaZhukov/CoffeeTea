@@ -7,6 +7,7 @@ import com.mrswimmer.coffeetea.data.settings.Screens;
 
 public class AuthActivity extends BaseActivity {
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_auth;

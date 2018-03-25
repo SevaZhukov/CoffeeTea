@@ -45,9 +45,10 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
 
     @OnClick(R.id.sign_in_enter)
     void onEnterClick() {
+        presenter.goToMain();
         email = editEmail.getText().toString();
         password = editPass.getText().toString();
-        enter();
+        //enter();
     }
 
     @OnClick(R.id.sign_in_reg)

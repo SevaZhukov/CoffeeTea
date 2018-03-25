@@ -52,4 +52,8 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
     void gotoReg() {
         router.navigateTo(Screens.SIGN_UP_SCREEN);
     }
+
+    void goToMain() {
+        globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
+    }
 }

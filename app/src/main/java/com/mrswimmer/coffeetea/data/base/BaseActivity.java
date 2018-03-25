@@ -40,7 +40,15 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseV
         injectDependencies();
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        localRouter.newRootScreen(Screens.SIGN_IN_SCREEN);
+        switch (getContainerId()) {
+            case Screens.CONTAINER_AUTH:
+                localRouter.newRootScreen(Screens.SIGN_IN_SCREEN);
+                break;
+            case Screens.CONTAINER_MAIN:
+                localRouter.newRootScreen(Screens.CATALOG_SCREEN);
+                break;
+        }
+        //localRouter.newRootScreen(Screens.SIGN_IN_SCREEN);
     }
 
     @Override

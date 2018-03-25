@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -21,12 +22,22 @@ public class LocalNavigator extends SupportFragmentNavigator {
     @Override
     protected Fragment createFragment(String screenKey, Object data) {
         switch (currentContainer) {
-            /*case Screens.CONTAINER_MAIN:
-                return mainFragments(screenKey);*/
+            case Screens.CONTAINER_MAIN:
+                return mainFragments(screenKey);
             case Screens.CONTAINER_AUTH:
                 return authFragments(screenKey);
             default:
                     return authFragments(screenKey);
+        }
+    }
+    private Fragment mainFragments(String screenKey) {
+        switch (screenKey) {
+            case Screens.CATALOG_SCREEN :
+                return new CatalogFragment();/*
+            case Screens.SIGN_UP_SCREEN :
+                return new SignUpFragment();*/
+            default:
+                return new CatalogFragment();
         }
     }
     /*public Fragment mainFragments(String screenKey) {

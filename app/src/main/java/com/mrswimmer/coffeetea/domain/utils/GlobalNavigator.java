@@ -6,7 +6,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.mrswimmer.coffeetea.data.settings.Screens;
-import com.mrswimmer.coffeetea.presentation.main.DrawerActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
 
@@ -36,7 +35,7 @@ public class GlobalNavigator implements Navigator {
                     break;
                 case Screens.MAIN_ACTIVITY:
                     activity.overridePendingTransition(0,0);
-                    Intent i = new Intent(activity, DrawerActivity.class);
+                    Intent i = new Intent(activity, MainActivity.class);
                     activity.startActivity(i);
                     activity.finish();
                     break;

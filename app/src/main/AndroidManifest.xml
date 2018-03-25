@@ -20,7 +20,6 @@
         <activity android:name=".presentation.main.activity.MainActivity" />
         <activity android:name=".presentation.splash.intro.IntroActivity" />
         <activity android:name=".presentation.auth.activity.AuthActivity" />
-        <activity android:name=".presentation.main.DrawerActivity"></activity>
     </application>
 
 </manifest>

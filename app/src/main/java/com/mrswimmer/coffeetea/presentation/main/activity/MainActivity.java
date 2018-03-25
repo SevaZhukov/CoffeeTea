@@ -1,22 +1,20 @@
 package com.mrswimmer.coffeetea.presentation.main.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.User;
 import com.mrswimmer.coffeetea.data.base.BaseActivity;
 import com.mrswimmer.coffeetea.data.settings.Screens;
-import com.mrswimmer.coffeetea.domain.service.FireService;
 
-import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
 
@@ -28,13 +26,19 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         return new MainActivityPresenter();
     }
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.navView)
+    NavigationView navigationView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        App.getComponent().inject(this);
-        ButterKnife.bind(this);
-
+        setSupportActionBar(toolbar);
+        presenter.setupDrawerContent(navigationView);
     }
 
     @Override
@@ -50,5 +54,22 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void checkDrawerItem(MenuItem menuItem) {
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
+        drawerLayout.closeDrawers();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

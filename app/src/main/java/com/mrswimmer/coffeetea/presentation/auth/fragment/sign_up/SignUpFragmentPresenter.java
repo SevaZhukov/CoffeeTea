@@ -5,30 +5,22 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.data.User;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
-import com.mrswimmer.coffeetea.presentation.main.MainActivity;
 
 import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Router;
 
-import static android.content.ContentValues.TAG;
-
 @InjectViewState
 public class SignUpFragmentPresenter extends MvpPresenter<SignUpFragmentView> {
-    @Inject
-    @Local
-    Router router;
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     @Inject
     @Global
@@ -50,31 +42,21 @@ public class SignUpFragmentPresenter extends MvpPresenter<SignUpFragmentView> {
             @Override
             public void onSuccess(boolean success) {
                 getViewState().getUserData();
-                //globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.i("code", "error reg" + e);
-                getViewState().showErrorToast(":((");
+                getViewState().showErrorToast(e.getMessage());
             }
         });
     }
-    void addUser(String username, String firstName, String lastName) {
-        fireService.getAmountOfUsers(new FireService.UniCallback() {
-            @Override
-            public void onSuccess(Object o) {
-                Log.i("code", "success " + o);
-                int id = (int) o;
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                reference.child("users").child(String.valueOf(id)).setValue("12");
-                //fireService.addUser(username, firstName, lastName, id);
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.i("code", "error " + e);
-            }
-        });
+    void addUser(String username, String firstName, String lastName, String email, int city) {
+        DatabaseReference newUser = reference.child("users").push();
+        newUser.setValue(new User(firstName, lastName, city, username, email));
+        Log.i("code", "key " + newUser.getKey());
+        //fireService.getUser(newUser.getKey());
+        globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
     }
+
 }

@@ -17,22 +17,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     FireService fireService;
 
-    @OnClick(R.id.button)
-    void onClick() {
-        fireService.getDB(new FireService.UserCallBack() {
-            @Override
-            public void onSuccess(User user) {
-                //Log.i("code", user.getName());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.i("code", e+"");
-
-            }
-        });
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,17 +1,19 @@
 package com.mrswimmer.coffeetea.data;
 
+import java.util.ArrayList;
+
 public class User {
-    private String first_name;
-    private String last_name;
-    private int city;
-    private String username;
-    private String mail;
-    private Basket[] basket;
+    private String first_name = "";
+    private String last_name = "";
+    private int city = 0;
+    private String username = "";
+    private String mail = "";
+    private ArrayList<Basket> basket = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String first_name, String last_name, int city, String username, String mail, Basket[] basket) {
+    public User(String first_name, String last_name, int city, String username, String mail, ArrayList<Basket> basket) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.city = city;
@@ -20,10 +22,13 @@ public class User {
         this.basket = basket;
     }
 
-    public User(String firstName, String lastName, String username) {
+    public User(String first_name, String last_name, int city, String username, String mail) {
         this.first_name = first_name;
         this.last_name = last_name;
+        this.city = city;
         this.username = username;
+        this.mail = mail;
+        this.basket = basket;
     }
 
     public String getFirst_name() {
@@ -66,11 +71,11 @@ public class User {
         this.mail = mail;
     }
 
-    public Basket[] getBasket() {
+    public ArrayList<Basket> getBasket() {
         return basket;
     }
 
-    public void setBasket(Basket[] basket) {
+    public void setBasket(ArrayList<Basket> basket) {
         this.basket = basket;
     }
 }

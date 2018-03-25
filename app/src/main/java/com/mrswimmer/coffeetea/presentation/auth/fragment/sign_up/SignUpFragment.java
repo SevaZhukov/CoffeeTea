@@ -5,8 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -18,6 +21,7 @@ import com.mrswimmer.coffeetea.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
 public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragmentView {
     @InjectPresenter
@@ -42,6 +46,8 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
     Spinner spinner;
 
     String email, pass, username, firstName, lastName;
+    int city;
+    String[] cities = {"Новосибирск", "Кемерово"};
 
     @Nullable
     @Override
@@ -53,8 +59,20 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-    }
+        SpinnerAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.sign_up_spinner_item, cities);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
     @OnClick(R.id.sign_up_reg)
     void onRegClick() {
         email = editEmail.getText().toString();
@@ -62,8 +80,8 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
         username = editUsername.getText().toString();
         firstName = editFirstName.getText().toString();
         lastName = editLastName.getText().toString();
+        city = spinner.getSelectedItemPosition();
         signUp();
-        //presenter.signUp(email, pass);
     }
 
     void signUp() {
@@ -73,6 +91,7 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
             showErrorToast("Заполните все поля!");
         }
     }
+
     @Override
     public void showErrorToast(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
@@ -80,7 +99,7 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
 
     @Override
     public void getUserData() {
-        presenter.addUser(username, firstName, lastName);
+        presenter.addUser(username, firstName, lastName, email, city);
     }
 
     boolean checkOnFillingFields() {

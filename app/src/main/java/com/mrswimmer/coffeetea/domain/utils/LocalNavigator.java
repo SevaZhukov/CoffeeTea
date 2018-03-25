@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentManager;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragment;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -27,15 +29,22 @@ public class LocalNavigator extends SupportFragmentNavigator {
             case Screens.CONTAINER_AUTH:
                 return authFragments(screenKey);
             default:
-                    return authFragments(screenKey);
+                return authFragments(screenKey);
         }
     }
+
     private Fragment mainFragments(String screenKey) {
         switch (screenKey) {
-            case Screens.CATALOG_SCREEN :
-                return new CatalogFragment();/*
-            case Screens.SIGN_UP_SCREEN :
-                return new SignUpFragment();*/
+            case Screens.CATALOG_SCREEN:
+                return new CatalogFragment();
+            case Screens.SALE_SCREEN:
+                return new SaleFragment();
+            case Screens.BASKET_SCREEN:
+                return new BasketFragment();
+            /*case Screens.SHOPS_SCREEN:
+                return new ShopsFragment();
+            case Screens.SETTINGS_SCREEN:
+                return new SaleFragment();*/
             default:
                 return new CatalogFragment();
         }
@@ -79,9 +88,9 @@ public class LocalNavigator extends SupportFragmentNavigator {
 
     private Fragment authFragments(String screenKey) {
         switch (screenKey) {
-            case Screens.SIGN_IN_SCREEN :
+            case Screens.SIGN_IN_SCREEN:
                 return new SignInFragment();
-            case Screens.SIGN_UP_SCREEN :
+            case Screens.SIGN_UP_SCREEN:
                 return new SignUpFragment();
             default:
                 return new SignInFragment();

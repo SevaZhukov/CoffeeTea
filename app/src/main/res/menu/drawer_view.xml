@@ -1,13 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first_fragment"
-            android:title="First" />
+            android:id="@+id/nav_catalog_fragment"
+            android:title="Каталог" />
         <item
-            android:id="@+id/nav_second_fragment"
-            android:title="Second" />
+            android:id="@+id/nav_sale_fragment"
+            android:title="Акции" />
         <item
-            android:id="@+id/nav_third_fragment"
-            android:title="Third" />
+            android:id="@+id/nav_basket_fragment"
+            android:title="Корзина" />
+        <item
+            android:id="@+id/nav_shops_fragment"
+            android:title="Магазины" />
+        <item
+            android:id="@+id/nav_settings_fragment"
+            android:title="Настройки" />
     </group>
 </menu>

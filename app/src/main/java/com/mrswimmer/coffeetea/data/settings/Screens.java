@@ -10,4 +10,6 @@ public interface Screens {
     String SIGN_UP_SCREEN = "sign up screen";
     String SIGN_IN_SCREEN = "sign in screen";
     String CATALOG_SCREEN = "catalog_";
+    String SALE_SCREEN = "sale screen";
+    String BASKET_SCREEN = "basket screen";
 }

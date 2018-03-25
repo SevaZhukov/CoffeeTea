@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -33,12 +34,14 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     @BindView(R.id.navView)
     NavigationView navigationView;
 
+    View headerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
         presenter.setupDrawerContent(navigationView);
+        headerLayout = navigationView.getHeaderView(0);
     }
 
     @Override
@@ -62,6 +65,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

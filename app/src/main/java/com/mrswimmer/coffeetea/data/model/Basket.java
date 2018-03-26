@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.data;
+package com.mrswimmer.coffeetea.data.model;
 
 public class Basket
 {

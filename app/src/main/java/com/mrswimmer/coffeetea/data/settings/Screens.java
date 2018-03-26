@@ -12,4 +12,5 @@ public interface Screens {
     String CATALOG_SCREEN = "catalog_";
     String SALE_SCREEN = "sale screen";
     String BASKET_SCREEN = "basket screen";
+    String FILTERS_SCREEN = "filters screen";
 }

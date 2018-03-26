@@ -1,18 +1,13 @@
 package com.mrswimmer.coffeetea.domain.service;
 
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
-import com.mrswimmer.coffeetea.data.Basket;
-import com.mrswimmer.coffeetea.data.User;
-
-import javax.inject.Inject;
+import com.mrswimmer.coffeetea.data.model.User;
 
 public class FireService {
     private DatabaseReference reference;

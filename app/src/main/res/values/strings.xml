@@ -2,4 +2,6 @@
     <string name="app_name">Coffee&amp;Tea</string>
     <string name="name">Кофе и Чай</string>
     <string name="miss"><u>Пропустить</u></string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 </resources>

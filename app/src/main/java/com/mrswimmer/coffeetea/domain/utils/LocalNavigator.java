@@ -8,6 +8,7 @@ import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragment;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
@@ -41,10 +42,12 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 return new SaleFragment();
             case Screens.BASKET_SCREEN:
                 return new BasketFragment();
+            case Screens.FILTERS_SCREEN:
+                return new FilterFragment();
             /*case Screens.SHOPS_SCREEN:
                 return new ShopsFragment();
             case Screens.SETTINGS_SCREEN:
-                return new SaleFragment();*/
+                return new FilterFragment();*/
             default:
                 return new CatalogFragment();
         }

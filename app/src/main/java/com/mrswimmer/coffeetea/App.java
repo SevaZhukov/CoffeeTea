@@ -1,7 +1,6 @@
 package com.mrswimmer.coffeetea;
 
 import android.app.Application;
-
 import com.mrswimmer.coffeetea.di.AppComponent;
 import com.mrswimmer.coffeetea.di.DaggerAppComponent;
 import com.mrswimmer.coffeetea.di.module.SharedPreferencesModule;

@@ -70,7 +70,7 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     @OnClick(R.id.filter_choose_kinds)
     void onChooseKindClick() {
-        onCreateDialog(0);
+        //onCreateDialog(0);
     }
 
     @OnClick(R.id.filter_show_button)
@@ -78,7 +78,8 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     }
 
-    @Override
+
+    /*@Override
     public AlertDialog onCreateDialog(int id) {
         final boolean[] mCheckedItems = {false, true, false};
         final String[] checkCatsName = {"Васька", "Рыжик", "Мурзик"};
@@ -96,5 +97,5 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
                 .setNegativeButton("Отмена",
                         (dialog, id12) -> dialog.cancel());
         return builder.create();
-    }
+    }*/
 }

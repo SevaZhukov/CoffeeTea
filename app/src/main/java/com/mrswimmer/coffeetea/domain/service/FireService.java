@@ -3,11 +3,17 @@ package com.mrswimmer.coffeetea.domain.service;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.kelvinapps.rxfirebase.DataSnapshotMapper;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FireService {
     private DatabaseReference reference;
@@ -50,4 +56,21 @@ public class FireService {
 
         void onError(Throwable e);
     }
+
+    public interface ProductsCallback {
+        void onError(Throwable e);
+
+        void onSuccess(List<Product> products);
+    }
+
+    public void getProducts() {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(products ->  Log.i("code", reference.getKey()+""));
+    }
+
+    public void getProductsWithParam(ProductsCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
 }

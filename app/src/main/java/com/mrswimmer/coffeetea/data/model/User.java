@@ -8,18 +8,18 @@ public class User {
     private int city = 0;
     private String username = "";
     private String mail = "";
-    private ArrayList<Basket> basket = new ArrayList<>();
+    private ArrayList<ProductInBasket> productInBasket = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String first_name, String last_name, int city, String username, String mail, ArrayList<Basket> basket) {
+    public User(String first_name, String last_name, int city, String username, String mail, ArrayList<ProductInBasket> productInBasket) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.city = city;
         this.username = username;
         this.mail = mail;
-        this.basket = basket;
+        this.productInBasket = productInBasket;
     }
 
     public User(String first_name, String last_name, int city, String username, String mail) {
@@ -28,7 +28,7 @@ public class User {
         this.city = city;
         this.username = username;
         this.mail = mail;
-        this.basket = basket;
+        this.productInBasket = productInBasket;
     }
 
     public String getFirst_name() {
@@ -71,11 +71,11 @@ public class User {
         this.mail = mail;
     }
 
-    public ArrayList<Basket> getBasket() {
-        return basket;
+    public ArrayList<ProductInBasket> getProductInBasket() {
+        return productInBasket;
     }
 
-    public void setBasket(ArrayList<Basket> basket) {
-        this.basket = basket;
+    public void setProductInBasket(ArrayList<ProductInBasket> productInBasket) {
+        this.productInBasket = productInBasket;
     }
 }

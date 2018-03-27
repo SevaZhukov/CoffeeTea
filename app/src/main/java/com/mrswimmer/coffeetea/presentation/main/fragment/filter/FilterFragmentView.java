@@ -5,5 +5,5 @@ import android.app.Dialog;
 import com.arellomobile.mvp.MvpView;
 
 interface FilterFragmentView extends MvpView {
-    Dialog onCreateDialog(int id);
+    //Dialog onCreateDialog(int id);
 }

@@ -60,6 +60,21 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
 
     void gotoReg() {
         //fireService.getProducts();
+        /*DatabaseReference newProd = reference.child("products").push();
+        ArrayList<String> images = new ArrayList<>();
+        images.add("http://heaclub.ru/tim/673c999977399788744cde08181b449d.jpg");
+        images.add("url2");
+        ArrayList<Availability> availabilities = new ArrayList<>();
+        availabilities.add(new Availability(2, "0123"));
+        availabilities.add(new Availability(4, "456"));
+        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "chai", 199, images, availabilities, 1, 3));
+        newProd = reference.child("products").push();
+        newProd.setValue(new Product(newProd.getKey(), 200, "OK", "cofe", 599, images, availabilities, 0, 3));
+        newProd = reference.child("products").push();
+        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "chai", 199, images, availabilities, 1, 2));
+        newProd = reference.child("products").push();
+        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "chai", 199, images, availabilities, 0, 1));
+        Log.i("code", "OK");*/
         router.navigateTo(Screens.SIGN_UP_SCREEN);
     }
 

@@ -58,14 +58,14 @@ public class FireService {
     }
 
     public interface ProductsCallback {
-        void onError(Throwable e);
-
         void onSuccess(List<Product> products);
+
+        void onError(Throwable e);
     }
 
     public void getProducts() {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
-                .subscribe(products ->  Log.i("code", reference.getKey()+""));
+                .subscribe(products -> Log.i("code", reference.getKey() + ""));
     }
 
     public void getProductsWithParam(ProductsCallback callback) {

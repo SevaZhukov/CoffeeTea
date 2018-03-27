@@ -3,19 +3,20 @@ package com.mrswimmer.coffeetea.data.model;
 import java.util.ArrayList;
 
 public class Product {
+    String id;
     int weight;
     String description;
     String name;
     int cost;
     int typeId;
-    String kindId;
+    int kindId;
     ArrayList<String> images = new ArrayList<>();
     ArrayList<Availability> availabilities = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, String kindId) {
+    public Product(String id, int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, int kindId) {
         this.weight = weight;
         this.description = description;
         this.name = name;
@@ -24,6 +25,7 @@ public class Product {
         this.availabilities = availabilities;
         this.typeId = typeId;
         this.kindId = kindId;
+        this.id = id;
     }
 
     public int getWeight() {
@@ -82,12 +84,64 @@ public class Product {
         this.typeId = typeId;
     }
 
-    public String getKindId() {
+    public int getKindId() {
         return kindId;
     }
 
-    public void setKindId(String kindId) {
+    public void setKindId(int kindId) {
         this.kindId = kindId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return getTypeId() == 0 ? "Кофе" : "Чай";
+    }
+
+    public String getKind() {
+        if (getTypeId() == 0) {
+            switch (getKindId()) {
+                case 0:
+                    return "Арабика";
+                case 1:
+                    return "Робуста";
+                case 2:
+                    return "Либерика";
+                case 3:
+                    return "Эксцельза";
+                default:
+                    return "Арабика";
+            }
+        } else {
+            switch (getKindId()) {
+                case 0:
+                    return "Черный";
+                case 1:
+                    return "Зеленый";
+                case 2:
+                    return "Белый";
+                case 3:
+                    return "Желтый";
+                case 4:
+                    return "Улун";
+                case 5:
+                    return "Пуэр";
+                default:
+                    return "Черный";
+            }
+        }
+    }
+    public String getInStock() {
+        if(getAvailabilities().size()>0)
+            return "Да";
+        else
+            return "Нет";
     }
 }
 

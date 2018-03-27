@@ -1,6 +1,5 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.filter.recycler;
+package com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,9 @@ import android.view.ViewGroup;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,16 +32,25 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         this.context = context;
         App.getComponent().inject(this);
     }
+
     @Override
     public ProductsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_mode, parent, false);
+                .inflate(R.layout.product_item, parent, false);
         return new ProductsViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ProductsViewHolder holder, int position) {
         Product product = products.get(position);
+        holder.name.setText(product.getName());
+        holder.type.setText(product.getType());
+        holder.kind.setText(product.getKind());
+        holder.inStock.setText(product.getInStock());
+        Picasso.with(context)
+                .load(product.getImages().get(0))
+                .into(holder.image);
+        holder.buyButton.setOnClickListener(v -> localRouter.navigateTo(Screens.PRODUCT_SCREEN));
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface Screens {
     String SALE_SCREEN = "sale screen";
     String BASKET_SCREEN = "basket screen";
     String FILTERS_SCREEN = "filters screen";
+    String PRODUCT_SCREEN = "product screen";
     //Activities
     String MAIN_ACTIVITY = "main activity";
     String AUTH_ACTIVITY = "auth";

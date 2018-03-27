@@ -2,6 +2,8 @@ package com.mrswimmer.coffeetea.presentation.main.fragment.catalog;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +21,10 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +38,8 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
         return new CatalogFragmentPresenter();
     }
 
+    @BindView(R.id.catalog_recycler)
+    RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +52,9 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        presenter.setProductsForRecycler();
     }
 
     @Override
@@ -61,5 +72,9 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
             default:
                 return true;
         }
+    }
+    @Override
+    public void initAdapter(ArrayList<Product> products) {
+        recyclerView.setAdapter(new ProductsAdapter(products, getActivity()));
     }
 }

@@ -63,14 +63,13 @@ public class FireService {
         void onError(Throwable e);
     }
 
-    public void getProducts() {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
-                .subscribe(products -> Log.i("code", reference.getKey() + ""));
-    }
-
-    public void getProductsWithParam(ProductsCallback callback) {
+    public void getProducts(ProductsCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
+    public void getProductsWithParams(int typeId, ProductsCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("typeId").equalTo(typeId), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
 }

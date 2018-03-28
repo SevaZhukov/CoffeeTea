@@ -19,6 +19,7 @@ import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> {
+    ArrayList<Product> productsForRecycler = new ArrayList<>();
     @Inject
     @Local
     Router router;
@@ -33,8 +34,7 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
     }
 
     public void setProductsForRecycler() {
-        ArrayList<Product> productsForRecycler = new ArrayList<>();
-        fireService.getProductsWithParam(new FireService.ProductsCallback() {
+        fireService.getProducts(new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
                 Log.i("code", "set " + products.size());

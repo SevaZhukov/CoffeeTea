@@ -4,6 +4,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
@@ -12,9 +13,22 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.settings.Settings;
+import com.mrswimmer.coffeetea.di.qualifier.Local;
+import com.mrswimmer.coffeetea.domain.service.FireService;
+
+import javax.inject.Inject;
+
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
+
+    @Inject
+    @Local
+    Router router;
+
+    @Inject
+    FireService fireService;
 
     public FilterFragmentPresenter() {
         App.getComponent().inject(this);
@@ -50,7 +64,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
                         (dialog, which, isChecked) -> checked[which] = isChecked)
                 .setPositiveButton("Готово",
                         (dialog, id1) -> {
-                            getViewState().setCountKinds(getCountKinds(checked));
+                            getViewState().setCountKinds(checked, getCountKinds(checked));
                             dialog.cancel();
                         })
                 .setNegativeButton("Отмена",
@@ -72,7 +86,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
         return count;
     }
 
-    void updateData() {
-
+    void updateData(int type, int sort, boolean inSctock, boolean inMyCity, boolean[] kinds) {
+        fireService.getProductsWithParams(type, sort, inSctock, inMyCity, );
     }
 }

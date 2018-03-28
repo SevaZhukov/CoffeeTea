@@ -1,6 +1,5 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.filter;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -22,12 +21,15 @@ import com.mrswimmer.coffeetea.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
 public class FilterFragment extends MvpAppCompatFragment implements FilterFragmentView {
 
     @InjectPresenter
     FilterFragmentPresenter presenter;
+    private boolean[] kinds;
 
     @ProvidePresenter
     public FilterFragmentPresenter presenter() {
@@ -47,9 +49,9 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
     @BindView(R.id.filter_check_in_my_city)
     CheckBox inMyCityCheck;
     @BindView(R.id.filter_check_in_stock)
-    Button inStockCheck;
+    CheckBox inStockCheck;
 
-    String[] sorts = {"По цене ↑", "По цене ↓", "По весу ↑", "По весу ↓", "По рейтингу ↑", "По рейтингу ↓"};
+    String[] sorts = {"По цене ↑", "По цене ↓", "По рейтингу ↑", "По рейтингу ↓"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,8 +70,7 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     @OnClick(R.id.filter_choose_kinds)
     void onChooseKindClick() {
-        showDialog();
-        //onCreateDialog(0);
+        showKindsDialog();
     }
 
     @OnClick(R.id.filter_show_button)
@@ -77,16 +78,45 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     }
 
-    public void showDialog() {
+    @OnCheckedChanged(R.id.filter_radio_coffee)
+    void onTypeChanged() {
+        updateFilter();
+    }
 
+    @OnCheckedChanged(R.id.filter_check_in_stock)
+    void onInStockChanged() {
+        updateFilter();
+    }
+
+    @OnCheckedChanged(R.id.filter_check_in_my_city)
+    void onInMyCityChanged() {
+        updateFilter();
+    }
+
+    @OnItemSelected(R.id.filter_spinner_sort)
+    void onSpinneChanged() {
+        updateFilter();
+    }
+
+    public void showKindsDialog() {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(getActivity());
         presenter.setBuilder(builder, radioCoffee.isChecked());
-
     }
 
     @Override
-    public void setCountKinds(int countKinds) {
-        countKindsText.setText(countKinds + "");
+    public void setCountKinds(boolean[] checked, int countKinds) {
+        countKindsText.setText("Сорта: " + countKinds);
+        kinds = checked;
+        updateFilter();
+    }
+
+    void updateFilter() {
+        int type = radioCoffee.isChecked() ? 0 : 1;
+        int sort = spinner.getSelectedItemPosition();
+        boolean inSctock = inStockCheck.isChecked();
+        boolean inMyCity = inMyCityCheck.isChecked();
+        boolean[] kinds = this.kinds;
+        presenter.updateData(type, sort, inSctock, inMyCity, kinds);
     }
 }

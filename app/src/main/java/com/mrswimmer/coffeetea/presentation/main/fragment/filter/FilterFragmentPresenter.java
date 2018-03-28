@@ -12,9 +12,15 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -87,6 +93,20 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
     }
 
     void updateData(int type, int sort, boolean inSctock, boolean inMyCity, boolean[] kinds) {
-        fireService.getProductsWithParams(type, sort, inSctock, inMyCity, );
+        fireService.getProducts(new FireService.ProductsCallback() {
+            @Override
+            public void onSuccess(List<Product> products) {
+                switch (sort) {
+                    case 0:
+                        Collections.sort(products, (o1, o2) -> o1.getCost()-o2.getCost());
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
     }
 }

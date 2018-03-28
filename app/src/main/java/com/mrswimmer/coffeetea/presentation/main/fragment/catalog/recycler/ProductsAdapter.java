@@ -50,7 +50,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         Picasso.with(context)
                 .load(product.getImages().get(0))
                 .into(holder.image);
-        holder.buyButton.setOnClickListener(v -> localRouter.navigateTo(Screens.PRODUCT_SCREEN));
     }
 
     @Override

@@ -16,7 +16,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
     TextView weight;
     TextView inStock;
     ImageView image;
-    Button buyButton;
+    TextView cost;
     public ProductsViewHolder(View v) {
         super(v);
         name = v.findViewById(R.id.item_prod_name);
@@ -25,7 +25,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         weight = v.findViewById(R.id.item_prod_weight);
         inStock = v.findViewById(R.id.item_prod_in_stock);
         image = v.findViewById(R.id.item_prod_image);
-        buyButton = v.findViewById(R.id.item_prod_buy);
+        cost = v.findViewById(R.id.item_prod_cost);
 
     }
 }

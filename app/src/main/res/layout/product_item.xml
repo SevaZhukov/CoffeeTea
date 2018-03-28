@@ -7,12 +7,28 @@
     android:layout_margin="5dp">
 
     <TextView
+        android:id="@+id/item_prod_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="199 руб"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
         android:id="@+id/item_prod_in_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Да"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="@+id/textView12" />
 
@@ -22,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="В наличии: "
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -32,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="200"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -42,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Сорт: "
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -50,17 +66,19 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="Тип: "
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/item_prod_name"
-        app:layout_constraintTop_toBottomOf="@+id/item_prod_name" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
     <ImageView
         android:id="@+id/item_prod_image"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Чай"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
@@ -97,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Улун"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
@@ -107,21 +125,20 @@
         android:layout_height="wrap_content"
         android:text="Вес: "
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <Button
-        android:id="@+id/item_prod_buy"
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/MyRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background_transparent"
-        android:text="купить"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        android:layout_marginTop="8dp"
+        android:clickable="false"
+        android:numStars="5"
+        android:rating="3"
+        app:layout_constraintStart_toStartOf="@+id/item_prod_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_prod_name" />
+
 </android.support.constraint.ConstraintLayout>

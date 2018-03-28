@@ -18,4 +18,8 @@
         <item name="android:listPreferredItemHeightSmall">60dp</item><!-- item size in menu-->
         <item name="listPreferredItemHeightSmall">60dp</item><!-- item size in menu-->
     </style>
+    <style name="MyRatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">@color/yellow</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
 </resources>

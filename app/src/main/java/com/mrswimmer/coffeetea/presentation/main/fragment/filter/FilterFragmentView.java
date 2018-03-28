@@ -5,5 +5,6 @@ import android.app.Dialog;
 import com.arellomobile.mvp.MvpView;
 
 interface FilterFragmentView extends MvpView {
+    void setCountKinds(int countKinds);
     //Dialog onCreateDialog(int id);
 }

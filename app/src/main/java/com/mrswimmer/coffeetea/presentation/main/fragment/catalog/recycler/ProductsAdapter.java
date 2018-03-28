@@ -47,6 +47,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         holder.type.setText(product.getType());
         holder.kind.setText(product.getKind());
         holder.inStock.setText(product.getInStock());
+        holder.ratingBar.setRating(product.getRate());
+        holder.cost.setText(product.getCostString());
         Picasso.with(context)
                 .load(product.getImages().get(0))
                 .into(holder.image);

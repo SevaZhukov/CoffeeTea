@@ -1,6 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.filter;
 
-import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -23,7 +22,6 @@ import com.mrswimmer.coffeetea.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class FilterFragment extends MvpAppCompatFragment implements FilterFragmentView {
@@ -51,7 +49,7 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
     @BindView(R.id.filter_check_in_stock)
     Button inStockCheck;
 
-    String[] sorts = {"По цене ↑", "По цене ↓", "По весу ↑", "По весу ↓"};
+    String[] sorts = {"По цене ↑", "По цене ↓", "По весу ↑", "По весу ↓", "По рейтингу ↑", "По рейтингу ↓"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +68,7 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     @OnClick(R.id.filter_choose_kinds)
     void onChooseKindClick() {
+        showDialog();
         //onCreateDialog(0);
     }
 
@@ -78,24 +77,16 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     }
 
+    public void showDialog() {
 
-    /*@Override
-    public AlertDialog onCreateDialog(int id) {
-        final boolean[] mCheckedItems = {false, true, false};
-        final String[] checkCatsName = {"Васька", "Рыжик", "Мурзик"};
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Выберите котов")
-                .setCancelable(false)
-                .setMultiChoiceItems(checkCatsName, mCheckedItems,
-                        (dialog, which, isChecked) -> mCheckedItems[which] = isChecked)
-                // Добавляем кнопки
-                .setPositiveButton("Готово",
-                        (dialog, id1) -> {
+        presenter.setBuilder(builder, radioCoffee.isChecked());
 
-                        })
-                .setNegativeButton("Отмена",
-                        (dialog, id12) -> dialog.cancel());
-        return builder.create();
-    }*/
+    }
+
+    @Override
+    public void setCountKinds(int countKinds) {
+        countKindsText.setText(countKinds + "");
+    }
 }

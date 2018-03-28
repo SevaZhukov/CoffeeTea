@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Product {
     String id;
+    int rate;
     int weight;
     String description;
     String name;
@@ -16,7 +17,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, int kindId) {
+    public Product(String id, int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, int kindId, int rate) {
         this.weight = weight;
         this.description = description;
         this.name = name;
@@ -26,6 +27,7 @@ public class Product {
         this.typeId = typeId;
         this.kindId = kindId;
         this.id = id;
+        this.rate = rate;
     }
 
     public int getWeight() {
@@ -100,6 +102,14 @@ public class Product {
         this.id = id;
     }
 
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
     public String getType() {
         return getTypeId() == 0 ? "Кофе" : "Чай";
     }
@@ -137,11 +147,16 @@ public class Product {
             }
         }
     }
+
     public String getInStock() {
-        if(getAvailabilities().size()>0)
+        if (getAvailabilities().size() > 0)
             return "Да";
         else
             return "Нет";
+    }
+
+    public String getCostString() {
+        return getCost() + " руб";
     }
 }
 

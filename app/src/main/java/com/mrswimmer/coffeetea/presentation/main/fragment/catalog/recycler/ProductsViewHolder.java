@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.mrswimmer.coffeetea.R;
@@ -17,6 +18,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
     TextView inStock;
     ImageView image;
     TextView cost;
+    RatingBar ratingBar;
     public ProductsViewHolder(View v) {
         super(v);
         name = v.findViewById(R.id.item_prod_name);
@@ -26,6 +28,6 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         inStock = v.findViewById(R.id.item_prod_in_stock);
         image = v.findViewById(R.id.item_prod_image);
         cost = v.findViewById(R.id.item_prod_cost);
-
+        ratingBar = v.findViewById(R.id.item_prod_rate);
     }
 }

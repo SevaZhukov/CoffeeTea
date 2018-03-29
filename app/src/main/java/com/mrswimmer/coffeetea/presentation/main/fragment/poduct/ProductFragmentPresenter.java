@@ -1,13 +1,13 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.sale;
+package com.mrswimmer.coffeetea.presentation.main.fragment.poduct;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
 
 @InjectViewState
-public class SaleFragmentPresenter extends MvpPresenter<SaleFragmentView> {
+public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> {
 
-    public SaleFragmentPresenter() {
+    public ProductFragmentPresenter() {
         App.getComponent().inject(this);
     }
 

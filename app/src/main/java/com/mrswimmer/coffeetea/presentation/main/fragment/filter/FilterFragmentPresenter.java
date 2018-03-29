@@ -43,6 +43,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
     @Inject
     SharedPreferences settings;
     public static ArrayList<Product> readyList;
+    private ArrayList<Product> currentList;
 
     public FilterFragmentPresenter() {
         App.getComponent().inject(this);
@@ -104,8 +105,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
         fireService.getProducts(new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
-                readyList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);
-                Log.i("code", "filtered size" + readyList.size());
+                currentList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);
                 getViewState().setResultOfFilter(readyList.size());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(Settings.SORT, true);
@@ -120,6 +120,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
     }
 
     void backToCatalogWithNewList() {
-        router.backTo(Screens.CATALOG_SCREEN);
+        readyList = currentList;
+        router.navigateTo(Screens.CATALOG_SCREEN);
     }
 }

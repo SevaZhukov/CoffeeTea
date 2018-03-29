@@ -1,6 +1,7 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         Picasso.with(context)
                 .load(product.getImages().get(0))
                 .into(holder.image);
+        holder.itemView.setOnClickListener(v -> localRouter.navigateTo(Screens.PRODUCT_SCREEN, product.getId()));
+        holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @Override

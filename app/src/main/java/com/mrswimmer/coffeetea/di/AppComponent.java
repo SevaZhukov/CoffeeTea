@@ -12,6 +12,7 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragmentP
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
@@ -37,4 +38,6 @@ public interface AppComponent {
     void inject(FilterFragmentPresenter filterFragmentPresenter);
 
     void inject(ProductsAdapter productsAdapter);
+
+    void inject(ProductFragmentPresenter productFragmentPresenter);
 }

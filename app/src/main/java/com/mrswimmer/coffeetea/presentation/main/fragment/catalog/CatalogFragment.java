@@ -74,6 +74,7 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_catalog_filters:
+                //presenter.gotoProd();
                 presenter.gotoFilters();
                 return true;
             default:
@@ -99,11 +100,6 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     void dropFilters() {
         hideDropButton();
         presenter.dropFilters();
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.i("code", "resumecatalog");
     }
 
 }

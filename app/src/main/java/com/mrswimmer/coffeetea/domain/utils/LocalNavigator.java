@@ -11,6 +11,7 @@ import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragment;
 
 import java.util.Set;
@@ -48,6 +49,12 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 return new BasketFragment();
             case Screens.FILTERS_SCREEN:
                 return new FilterFragment();
+            case Screens.PRODUCT_SCREEN:
+                ProductFragment productFragment = new ProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", String.valueOf(data));
+                productFragment.setArguments(bundle);
+                return productFragment;
             /*case Screens.SHOPS_SCREEN:
                 return new ShopsFragment();
             case Screens.SETTINGS_SCREEN:

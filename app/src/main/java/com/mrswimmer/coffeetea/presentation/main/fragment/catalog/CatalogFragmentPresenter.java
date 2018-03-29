@@ -78,4 +78,9 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
         editor.apply();
         setProductsWithoutFilters();
     }
+
+    public void gotoProd() {
+        router.navigateTo(Screens.PRODUCT_SCREEN);
+    }
+    //public void getSaleProducts()
 }

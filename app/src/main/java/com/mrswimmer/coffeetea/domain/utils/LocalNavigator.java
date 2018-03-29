@@ -44,7 +44,11 @@ public class LocalNavigator extends SupportFragmentNavigator {
             case Screens.CATALOG_SCREEN:
                 return new CatalogFragment();
             case Screens.SALE_SCREEN:
-                return new SaleFragment();
+                CatalogFragment catalogFragment = new CatalogFragment();
+                Bundle bundleSale = new Bundle();
+                bundleSale.putBoolean("sale", true);
+                catalogFragment.setArguments(bundleSale);
+                return catalogFragment;
             case Screens.BASKET_SCREEN:
                 return new BasketFragment();
             case Screens.FILTERS_SCREEN:

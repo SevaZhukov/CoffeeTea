@@ -3,7 +3,6 @@ package com.mrswimmer.coffeetea.domain.service;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kelvinapps.rxfirebase.DataSnapshotMapper;
@@ -12,7 +11,6 @@ import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
 import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FireService {
@@ -45,6 +43,11 @@ public class FireService {
                 });
     }
 
+    public void getSaleProducts(ProductsCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(0), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
     public interface UserCallBack {
         void onSuccess(User user);
 
@@ -63,9 +66,13 @@ public class FireService {
         void onError(Throwable e);
     }
 
-    public void getProducts(ProductsCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
-                .subscribe(callback::onSuccess, callback::onError);
+    public void getProducts(boolean sale, ProductsCallback callback) {
+        if (sale)
+            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(1), DataSnapshotMapper.listOf(Product.class))
+                    .subscribe(callback::onSuccess, callback::onError);
+        else
+            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
+                    .subscribe(callback::onSuccess, callback::onError);
     }
 
     public void getProductsWithParams(int typeId, ProductsCallback callback) {

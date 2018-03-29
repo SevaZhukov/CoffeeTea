@@ -21,7 +21,6 @@ import com.mrswimmer.coffeetea.domain.service.FireService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -102,7 +101,7 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
     }
 
     void updateData(int type, int sort, boolean inStock, boolean[] kinds) {
-        fireService.getProducts(new FireService.ProductsCallback() {
+        fireService.getProducts(false, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
                 currentList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);

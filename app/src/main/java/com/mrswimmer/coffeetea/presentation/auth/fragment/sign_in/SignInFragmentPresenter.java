@@ -67,13 +67,13 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         ArrayList<Availability> availabilities = new ArrayList<>();
         availabilities.add(new Availability(2, "0123"));
         availabilities.add(new Availability(4, "456"));
-        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "Шмаль", 199, images, availabilities, 1, 3, 5));
+        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "Шмаль", 199, images, availabilities, 1, 3, 5, -1));
         newProd = reference.child("products").push();
-        newProd.setValue(new Product(newProd.getKey(), 150, "OK", "Волшебный чай", 99, images, availabilities, 1, 2, 4));
+        newProd.setValue(new Product(newProd.getKey(), 150, "OK", "Волшебный чай", 99, images, availabilities, 1, 2, 4, -1));
         newProd = reference.child("products").push();
-        newProd.setValue(new Product(newProd.getKey(), 200, "OK", "Ядреный кофе", 149, images, availabilities, 0, 1, 2));
+        newProd.setValue(new Product(newProd.getKey(), 200, "OK", "Ядреный кофе", 149, images, availabilities, 0, 1, 2, 99));
         newProd = reference.child("products").push();
-        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "эКспрессо", 499, images, availabilities, 0, 3, 3));
+        newProd.setValue(new Product(newProd.getKey(), 100, "OK", "эКспрессо", 499, images, availabilities, 0, 3, 3, -1));
         Log.i("code", "OK");
         router.navigateTo(Screens.SIGN_UP_SCREEN);
     }

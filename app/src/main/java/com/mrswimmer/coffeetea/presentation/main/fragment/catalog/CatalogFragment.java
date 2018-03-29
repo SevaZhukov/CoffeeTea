@@ -11,13 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
-
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -25,7 +19,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -47,6 +40,7 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
 
     @BindView(R.id.catalog_recycler)
     RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +55,14 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
         setHasOptionsMenu(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        presenter.setProductsForRecycler();
+        Bundle bundle = this.getArguments();
+        //Log.i("code", "bundle " + bundle);
+        boolean sale = false;
+        if (bundle != null) {
+            sale = bundle.getBoolean("sale", false);
+            Log.i("code", "in catalog salebool " + sale);
+        }
+        presenter.setProductsForRecycler(sale);
     }
 
     @Override
@@ -81,6 +82,7 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
                 return true;
         }
     }
+
     @Override
     public void initAdapter(ArrayList<Product> products) {
         recyclerView.setAdapter(new ProductsAdapter(products, getActivity()));

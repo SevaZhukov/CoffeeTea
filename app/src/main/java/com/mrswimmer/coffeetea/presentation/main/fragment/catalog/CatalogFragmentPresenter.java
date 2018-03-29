@@ -43,18 +43,21 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
         router.navigateTo(Screens.FILTERS_SCREEN);
     }
 
-    public void setProductsForRecycler() {
+    public void setProductsForRecycler(boolean sale) {
         Log.i("code", "sort " + settings.getBoolean(Settings.SORT, false));
-        if (settings.getBoolean(Settings.SORT, false)) {
+        if (sale) {
+            setProductsWithoutFilters(true);
+        } else if (settings.getBoolean(Settings.SORT, false)) {
             getViewState().initAdapter(FilterFragmentPresenter.readyList);
             getViewState().showDropButton();
         } else {
-            setProductsWithoutFilters();
+            setProductsWithoutFilters(false);
         }
     }
 
-    public void setProductsWithoutFilters() {
-        fireService.getProducts(new FireService.ProductsCallback() {
+    public void setProductsWithoutFilters(boolean sale) {
+        productsForRecycler.clear();
+        fireService.getProducts(sale, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
                 Log.i("code", "set " + products.size());
@@ -72,15 +75,15 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
         });
         getViewState().hideDropButton();
     }
+
     public void dropFilters() {
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(Settings.SORT, false);
         editor.apply();
-        setProductsWithoutFilters();
+        setProductsWithoutFilters(false);
     }
 
     public void gotoProd() {
         router.navigateTo(Screens.PRODUCT_SCREEN);
     }
-    //public void getSaleProducts()
 }

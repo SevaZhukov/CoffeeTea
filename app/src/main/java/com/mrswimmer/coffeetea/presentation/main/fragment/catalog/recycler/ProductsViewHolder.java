@@ -18,6 +18,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
     TextView inStock;
     ImageView image;
     TextView cost;
+    TextView newCost;
     RatingBar ratingBar;
     public ProductsViewHolder(View v) {
         super(v);
@@ -29,5 +30,6 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         image = v.findViewById(R.id.item_prod_image);
         cost = v.findViewById(R.id.item_prod_cost);
         ratingBar = v.findViewById(R.id.item_prod_rate);
+        newCost = v.findViewById(R.id.item_prod_cost_sale);
     }
 }

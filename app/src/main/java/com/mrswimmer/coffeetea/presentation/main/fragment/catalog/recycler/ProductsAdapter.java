@@ -54,7 +54,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
                 .load(product.getImages().get(0))
                 .into(holder.image);
         holder.itemView.setOnClickListener(v -> localRouter.navigateTo(Screens.PRODUCT_SCREEN, product.getId()));
-        holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        if (product.getNewCost() > 0) {
+            holder.newCost.setText(product.getNewCostString());
+            holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        //holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @Override

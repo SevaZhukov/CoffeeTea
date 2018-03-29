@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 
 import android.widget.Spinner;
@@ -24,11 +25,13 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CatalogFragment extends MvpAppCompatFragment implements CatalogFragmentView {
     @InjectPresenter
@@ -38,6 +41,9 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     public CatalogFragmentPresenter presenter() {
         return new CatalogFragmentPresenter();
     }
+
+    @BindView(R.id.catalog_drop_filter)
+    Button dropButton;
 
     @BindView(R.id.catalog_recycler)
     RecyclerView recyclerView;
@@ -80,9 +86,24 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     }
 
     @Override
+    public void hideDropButton() {
+        dropButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showDropButton() {
+        dropButton.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.catalog_drop_filter)
+    void dropFilters() {
+        hideDropButton();
+        presenter.dropFilters();
+    }
+    @Override
     public void onResume() {
         super.onResume();
-
         Log.i("code", "resumecatalog");
     }
+
 }

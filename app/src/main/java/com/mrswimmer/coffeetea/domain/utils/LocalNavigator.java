@@ -1,15 +1,19 @@
 package com.mrswimmer.coffeetea.domain.utils;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.mrswimmer.coffeetea.data.settings.Screens;
+import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragment;
+
+import java.util.Set;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 

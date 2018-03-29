@@ -1,5 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.filter;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.mrswimmer.coffeetea.domain.service.FireService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -37,7 +39,10 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
 
     @Inject
     FilterService filterService;
-    private ArrayList<Product> readyList;
+
+    @Inject
+    SharedPreferences settings;
+    public static ArrayList<Product> readyList;
 
     public FilterFragmentPresenter() {
         App.getComponent().inject(this);
@@ -102,6 +107,9 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
                 readyList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);
                 Log.i("code", "filtered size" + readyList.size());
                 getViewState().setResultOfFilter(readyList.size());
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean(Settings.SORT, true);
+                editor.apply();
             }
 
             @Override
@@ -112,6 +120,6 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
     }
 
     void backToCatalogWithNewList() {
-        router.navigateTo(Screens.CATALOG_SCREEN);
+        router.backTo(Screens.CATALOG_SCREEN);
     }
 }

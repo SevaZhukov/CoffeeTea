@@ -92,7 +92,7 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
 
     @OnClick(R.id.filter_show_button)
     void onShowClick() {
-
+        presenter.backToCatalogWithNewList();
     }
     public void showKindsDialog() {
         AlertDialog.Builder builder;

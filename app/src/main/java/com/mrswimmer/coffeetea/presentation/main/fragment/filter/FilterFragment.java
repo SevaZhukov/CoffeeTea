@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,7 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-import butterknife.OnItemSelected;
 
 public class FilterFragment extends MvpAppCompatFragment implements FilterFragmentView {
 
@@ -46,10 +46,10 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
     Button chooseKindButton;
     @BindView(R.id.filter_count_kinds_text)
     TextView countKindsText;
-    @BindView(R.id.filter_check_in_my_city)
-    CheckBox inMyCityCheck;
     @BindView(R.id.filter_check_in_stock)
     CheckBox inStockCheck;
+    @BindView(R.id.filter_show_button)
+    Button showResultsButton;
 
     String[] sorts = {"По цене ↑", "По цене ↓", "По рейтингу ↑", "По рейтингу ↓"};
 
@@ -66,6 +66,8 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
         ButterKnife.bind(this, view);
         SpinnerAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.sign_up_spinner_item, sorts);
         presenter.setSortSpinner(spinner, adapter);
+        updateFilter();
+
     }
 
     @OnClick(R.id.filter_choose_kinds)
@@ -88,16 +90,10 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
         updateFilter();
     }
 
-    @OnCheckedChanged(R.id.filter_check_in_my_city)
-    void onInMyCityChanged() {
-        updateFilter();
-    }
+    @OnClick(R.id.filter_show_button)
+    void onShowClick() {
 
-    @OnItemSelected(R.id.filter_spinner_sort)
-    void onSpinneChanged() {
-        updateFilter();
     }
-
     public void showKindsDialog() {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(getActivity());
@@ -111,12 +107,17 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
         updateFilter();
     }
 
-    void updateFilter() {
+    @Override
+    public void setResultOfFilter(int results) {
+        showResultsButton.setText("Показать " + results);
+    }
+
+    @Override
+    public void updateFilter() {
         int type = radioCoffee.isChecked() ? 0 : 1;
         int sort = spinner.getSelectedItemPosition();
         boolean inSctock = inStockCheck.isChecked();
-        boolean inMyCity = inMyCityCheck.isChecked();
         boolean[] kinds = this.kinds;
-        presenter.updateData(type, sort, inSctock, inMyCity, kinds);
+        presenter.updateData(type, sort, inSctock, kinds);
     }
 }

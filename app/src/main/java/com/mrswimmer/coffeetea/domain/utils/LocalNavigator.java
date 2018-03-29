@@ -26,7 +26,7 @@ public class LocalNavigator extends SupportFragmentNavigator {
     protected Fragment createFragment(String screenKey, Object data) {
         switch (currentContainer) {
             case Screens.CONTAINER_MAIN:
-                return mainFragments(screenKey);
+                return mainFragments(screenKey, data);
             case Screens.CONTAINER_AUTH:
                 return authFragments(screenKey);
             default:
@@ -34,7 +34,7 @@ public class LocalNavigator extends SupportFragmentNavigator {
         }
     }
 
-    private Fragment mainFragments(String screenKey) {
+    private Fragment mainFragments(String screenKey, Object data) {
         switch (screenKey) {
             case Screens.CATALOG_SCREEN:
                 return new CatalogFragment();

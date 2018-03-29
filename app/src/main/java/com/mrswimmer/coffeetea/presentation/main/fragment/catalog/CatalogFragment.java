@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,5 +77,12 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     @Override
     public void initAdapter(ArrayList<Product> products) {
         recyclerView.setAdapter(new ProductsAdapter(products, getActivity()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Log.i("code", "resumecatalog");
     }
 }

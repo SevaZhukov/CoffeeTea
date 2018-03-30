@@ -39,12 +39,17 @@ public class FireService {
     public void getUser(String key) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(key), User.class)
                 .subscribe(user -> {
-                    Log.i("code", "get User " + user.getFirst_name());
+                    Log.i("code", "get User " + user.getFirstName());
                 });
     }
 
     public void getSaleProducts(ProductsCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(0), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void getID(String email, UserCallBack callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").orderByChild("mail").equalTo(email), User.class)
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
@@ -78,5 +83,9 @@ public class FireService {
     public void getProductsWithParams(int typeId, ProductsCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("typeId").equalTo(typeId), DataSnapshotMapper.listOf(Product.class))
                 .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void addInBasket() {
+
     }
 }

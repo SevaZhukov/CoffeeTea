@@ -6,4 +6,5 @@ public interface Settings {
     boolean checked[] = {true, true, true, true, true, true};
     String SORTED_SET = "sorted set";
     String SORT = "sort";
+    String USER_ID = "user id";
 }

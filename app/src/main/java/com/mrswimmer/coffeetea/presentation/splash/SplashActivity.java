@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
@@ -27,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         App.getComponent().inject(this);
         new Handler().postDelayed(() -> {
-            String login = settings.getString("username", "no");
+            String login = settings.getString(Settings.USER_ID, "no");
             Log.i("code", "first: "+login);
             if(login.equals("no")){
                 overridePendingTransition(0,0);

@@ -8,9 +8,11 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrswimmer.coffeetea.App;
+import com.mrswimmer.coffeetea.data.model.User;
 import com.mrswimmer.coffeetea.data.model.product.Availability;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
+import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
@@ -46,7 +48,22 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         fireService.signIn(email, pass, new FireService.AuthCallBack() {
             @Override
             public void onSuccess(boolean success) {
-                globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
+                fireService.getID(email, new FireService.UserCallBack() {
+                    @Override
+                    public void onSuccess(User user) {
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString(Settings.USER_ID, user.getId());
+                        editor.apply();
+                        Log.i("code", "userid " + user.getId());
+                        globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -58,7 +75,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
 
     void gotoReg() {
         //fireService.getProducts();
-        DatabaseReference newProd = reference.child("products").push();
+        /*DatabaseReference newProd = reference.child("products").push();
         ArrayList<String> images = new ArrayList<>();
         images.add("http://heaclub.ru/tim/673c999977399788744cde08181b449d.jpg");
         images.add("url2");
@@ -72,20 +89,11 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         newProd.setValue(new Product(newProd.getKey(), 200, "OK", "Ядреный кофе", 149, images, availabilities, 0, 1, 2, 99));
         newProd = reference.child("products").push();
         newProd.setValue(new Product(newProd.getKey(), 100, "OK", "эКспрессо", 499, images, availabilities, 0, 3, 3, -1));
-        Log.i("code", "OK");
+        Log.i("code", "OK");*/
         router.navigateTo(Screens.SIGN_UP_SCREEN);
     }
 
     void goToMain() {
-        /*DatabaseReference newProd = reference.child("products").push();
-        ArrayList<String> images = new ArrayList<>();
-        images.add("url1");
-        images.add("url2");
-        ArrayList<Availability> availabilities = new ArrayList<>();
-        availabilities.add(new Availability(2, "0123"));
-        availabilities.add(new Availability(4, "456"));
-        newProd.setValue(new Product(newProd.getKey(), 100, "ok", "coffee1", 150, images, availabilities));
-        Log.i("code", "OK");*/
         SharedPreferences.Editor editor = settings.edit();
         globalRouter.navigateTo(Screens.MAIN_ACTIVITY);
     }

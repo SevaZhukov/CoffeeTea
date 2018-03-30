@@ -12,7 +12,6 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragment;
-import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragment;
 
 import java.util.Set;
 

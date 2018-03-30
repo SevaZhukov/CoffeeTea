@@ -1,17 +1,15 @@
 package com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in;
 
 import android.content.SharedPreferences;
-import android.transition.Scene;
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrswimmer.coffeetea.App;
-import com.mrswimmer.coffeetea.data.model.Availability;
-import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.data.model.product.Availability;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;

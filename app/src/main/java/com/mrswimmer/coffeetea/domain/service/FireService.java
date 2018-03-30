@@ -8,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.kelvinapps.rxfirebase.DataSnapshotMapper;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
-import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
 import java.util.List;

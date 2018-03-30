@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.squareup.picasso.Picasso;
@@ -37,7 +37,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
     @Override
     public ProductsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_item, parent, false);
+                .inflate(R.layout.item_product, parent, false);
         return new ProductsViewHolder(v);
     }
 

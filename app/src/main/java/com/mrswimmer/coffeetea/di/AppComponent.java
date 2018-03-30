@@ -13,7 +13,6 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmen
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragmentPresenter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.sale.SaleFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
 import javax.inject.Singleton;
@@ -30,8 +29,6 @@ public interface AppComponent {
     void inject(SignUpFragmentPresenter signUpFragmentPresenter);
     void inject(MainActivityPresenter mainActivityPresenter);
     void inject(CatalogFragmentPresenter catalogFragmentPresenter);
-
-    void inject(SaleFragmentPresenter saleFragmentPresenter);
 
     void inject(BasketFragmentPresenter basketFragmentPresenter);
 

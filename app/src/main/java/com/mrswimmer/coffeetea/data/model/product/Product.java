@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.data.model;
+package com.mrswimmer.coffeetea.data.model.product;
 
 import java.util.ArrayList;
 

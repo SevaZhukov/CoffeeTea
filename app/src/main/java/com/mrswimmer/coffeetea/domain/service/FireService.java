@@ -9,6 +9,7 @@ import com.kelvinapps.rxfirebase.DataSnapshotMapper;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
 import com.mrswimmer.coffeetea.data.model.Review;
+import com.mrswimmer.coffeetea.data.model.Shop;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
@@ -68,6 +69,12 @@ public class FireService {
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
+    public void getShops(ShopsCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("shops"), DataSnapshotMapper.listOf(Shop.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+
     public interface UserCallBack {
         void onSuccess(User user);
 
@@ -94,6 +101,11 @@ public class FireService {
 
     public interface ReviewsCallback {
         void onSuccess(List<Review> reviews);
+
+        void onError(Throwable e);
+    }
+    public interface ShopsCallback {
+        void onSuccess(List<Shop> shops);
 
         void onError(Throwable e);
     }

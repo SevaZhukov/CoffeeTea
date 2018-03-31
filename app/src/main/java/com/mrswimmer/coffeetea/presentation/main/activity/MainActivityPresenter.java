@@ -46,20 +46,18 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
     private void selectDrawerItem(MenuItem menuItem) {
         switch(menuItem.getItemId()) {
             case R.id.nav_catalog_fragment:
-                Log.i("code", "onFirstDrawerTap");
                 router.replaceScreen(Screens.CATALOG_SCREEN);
-                //fragmentClass = FirstFragment.class;
                 break;
             case R.id.nav_sale_fragment:
                 router.replaceScreen(Screens.SALE_SCREEN);
-                //fragmentClass = SecondFragment.class;
                 break;
             case R.id.nav_basket_fragment:
                 router.replaceScreen(Screens.BASKET_SCREEN);
-                //fragmentClass = ThirdFragment.class;
+                break;
+            case R.id.nav_shops_fragment:
+                router.replaceScreen(Screens.SHOP_SCREEN);
                 break;
             default:
-                //fragmentClass = FirstFragment.class;
         }
         menuItem.setChecked(true);
         getViewState().checkDrawerItem(menuItem);

@@ -11,6 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.Review;
+import com.mrswimmer.coffeetea.data.model.Shop;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
         return new ShopFragmentPresenter();
     }
 
-    @BindView(R.id.review_recycler)
+    @BindView(R.id.shop_recycler)
     RecyclerView recyclerView;
 
     @Override
@@ -35,16 +36,16 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         Bundle bundle = this.getArguments();
-        presenter.setReviewsForRecycler(bundle.getString("id"));
+        presenter.setShopsForRecycler();
     }
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_review;
+        return R.layout.fragment_shop;
     }
 
     @Override
-    public void initAdapter(ArrayList<Review> reviews) {
-        recyclerView.setAdapter(new ShopAdapter(reviews, getActivity()));
+    public void initAdapter(ArrayList<Shop> shops) {
+        recyclerView.setAdapter(new ShopAdapter(shops));
     }
 }

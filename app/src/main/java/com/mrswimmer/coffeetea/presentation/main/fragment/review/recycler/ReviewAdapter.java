@@ -23,15 +23,13 @@ import ru.terrakok.cicerone.Router;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
     private ArrayList<Review> reviews = new ArrayList<>();
-    private Context context;
 
     @Inject
     @Local
     Router localRouter;
 
-    public ReviewAdapter(ArrayList<Review> reviews, Context context) {
+    public ReviewAdapter(ArrayList<Review> reviews) {
         this.reviews = reviews;
-        this.context = context;
         App.getComponent().inject(this);
     }
 

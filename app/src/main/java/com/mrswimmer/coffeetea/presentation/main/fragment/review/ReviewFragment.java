@@ -51,6 +51,6 @@ public class ReviewFragment extends BaseFragment implements ReviewFragmentView {
 
     @Override
     public void initAdapter(ArrayList<Review> reviews) {
-        recyclerView.setAdapter(new ReviewAdapter(reviews, getActivity()));
+        recyclerView.setAdapter(new ReviewAdapter(reviews));
     }
 }

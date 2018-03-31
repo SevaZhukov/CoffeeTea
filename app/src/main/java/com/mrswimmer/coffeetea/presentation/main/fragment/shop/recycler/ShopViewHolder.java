@@ -9,13 +9,18 @@ import com.mrswimmer.coffeetea.R;
 
 public class ShopViewHolder extends RecyclerView.ViewHolder {
 
-    TextView username;
-    TextView description;
+    TextView adress;
+    TextView city;
+    TextView hours;
+    TextView reviews;
     RatingBar ratingBar;
+
     public ShopViewHolder(View v) {
         super(v);
-        ratingBar = v.findViewById(R.id.item_review_rate);
-        username = v.findViewById(R.id.item_review_name);
-        description = v.findViewById(R.id.item_review_description);
+        adress = v.findViewById(R.id.item_shop_adress);
+        city = v.findViewById(R.id.item_shop_city);
+        hours = v.findViewById(R.id.item_shop_hours_work);
+        reviews = v.findViewById(R.id.item_shop_reviews);
+        ratingBar = v.findViewById(R.id.item_shop_rate);
     }
 }

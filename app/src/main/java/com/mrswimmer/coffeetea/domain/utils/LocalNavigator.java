@@ -12,6 +12,7 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmen
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragment;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -62,6 +63,8 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 reviewBundle.putString("id", String.valueOf(data));
                 reviewFragment.setArguments(reviewBundle);
                 return reviewFragment;
+            case Screens.SHOP_SCREEN:
+                return new ShopFragment();
             default:
                 return new CatalogFragment();
         }

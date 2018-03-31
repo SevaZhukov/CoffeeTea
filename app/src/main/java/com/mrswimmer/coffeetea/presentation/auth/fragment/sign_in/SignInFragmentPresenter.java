@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.data.model.Review;
+import com.mrswimmer.coffeetea.data.model.Shop;
 import com.mrswimmer.coffeetea.data.model.User;
 import com.mrswimmer.coffeetea.data.model.product.Availability;
 import com.mrswimmer.coffeetea.data.model.product.Product;
@@ -76,7 +77,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
 
     void gotoReg() {
         //fireService.getProducts();
-        DatabaseReference newProd = reference.child("products").push();
+        /*DatabaseReference newProd = reference.child("products").push();
         ArrayList<String> images = new ArrayList<>();
         images.add("http://heaclub.ru/tim/673c999977399788744cde08181b449d.jpg");
         images.add("url2");
@@ -93,6 +94,20 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         newProd.setValue(new Product(newProd.getKey(), 200, "OK", "Ядреный кофе", 149, images, availabilities, 0, 1, 2, 99, reviews));
         newProd = reference.child("products").push();
         newProd.setValue(new Product(newProd.getKey(), 100, "OK", "эКспрессо", 499, images, availabilities, 0, 3, 3, -1,reviews));
+        Log.i("code", "OK");*/
+        DatabaseReference newShop = reference.child("shops").push();
+        ArrayList<String> images = new ArrayList<>();
+        images.add("http://tadviser.ru/images/8/8d/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D1%8B_%D1%87%D0%B0%D1%8F_%D0%B8_%D0%BA%D0%BE%D1%84%D0%B5.jpg");
+        images.add("url2");
+        ArrayList<Review> reviews = new ArrayList<>();
+        reviews.add(new Review("blablabla", 3, "rtr", "name1"));
+        reviews.add(new Review("ok", 4, "lol", "name2"));
+        newShop.setValue(new Shop(newShop.getKey(), "Ленина 40", 8, 20, images, reviews, "Новосибирск", 4));
+        newShop = reference.child("shops").push();
+        reviews.add(new Review("ok", 4, "lol", "name2"));
+        newShop.setValue(new Shop(newShop.getKey(), "Строителей 36", 9, 18, images, reviews, "Кемерово", 5));
+        newShop = reference.child("shops").push();
+        newShop.setValue(new Shop(newShop.getKey(), "Шарага 12", 10, 21, images, reviews, "Кемерово", 3));
         Log.i("code", "OK");
         //router.navigateTo(Screens.SIGN_UP_SCREEN);
     }

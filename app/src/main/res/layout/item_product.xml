@@ -8,29 +8,6 @@
     android:background="@drawable/item_background_transparent">
 
     <TextView
-        android:id="@+id/item_prod_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:paddingTop="2dp"
-        android:text="1 шт"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/item_prod_image"
-        app:layout_constraintStart_toStartOf="@+id/item_prod_image"
-        app:layout_constraintTop_toBottomOf="@+id/item_prod_image" />
-
-    <ImageView
-        android:id="@+id/item_prod_delprod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
-    <TextView
         android:id="@+id/item_prod_cost_sale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

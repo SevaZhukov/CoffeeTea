@@ -17,4 +17,5 @@ public interface Screens {
     //Activities
     String MAIN_ACTIVITY = "main activity";
     String AUTH_ACTIVITY = "auth";
+    String REVIEWS_SCREEN = "reviews screen";
 }

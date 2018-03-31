@@ -5,15 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.mrswimmer.coffeetea.data.settings.Screens;
-import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragment;
-
-import java.util.Set;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -58,50 +55,12 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 bundle.putString("id", String.valueOf(data));
                 productFragment.setArguments(bundle);
                 return productFragment;
-            /*case Screens.SHOPS_SCREEN:
-                return new ShopsFragment();
-            case Screens.SETTINGS_SCREEN:
-                return new FilterFragment();*/
+            case Screens.REVIEWS_SCREEN:
+
             default:
                 return new CatalogFragment();
         }
     }
-    /*public Fragment mainFragments(String screenKey) {
-        switch (screenKey) {
-            case Screens.MODES_SCREEN:
-                return new ModesFragment();
-            case Screens.RATE_SCREEN:
-                return new RateFragment();
-            case Screens.INFO_SCREEN:
-                return new InfoFragment();
-            case Screens.SETTINGS_SCREEN:
-                return new SettingsFragment();
-            case Screens.SHOP_SCREEN:
-                showSystemMessage("Магазин пока не работает!");
-                return new ModesFragment();
-            case Screens.PROFILE_SCREEN:
-                return new ProfileFragment();
-            default:
-                return new ModesFragment();
-        }
-    }
-    private Fragment gameFragments(String screenKey, Object data) {
-        switch (screenKey) {
-            case Screens.GAME_SCREEN:
-                return new GameFragment();
-            case Screens.RATE_SCREEN:
-                return new RateFragment();
-            case Screens.SHOP_SCREEN:
-                showSystemMessage("Магазин пока не работает!");
-                return new GameFragment();
-            case Screens.PROFILE_SCREEN:
-                return new ProfileFragment();
-            case Screens.ZOOM_SCREEN:
-                return new ZoomFragment(data);
-            default:
-                return new ModesFragment();
-        }
-    }*/
 
     private Fragment authFragments(String screenKey) {
         switch (screenKey) {

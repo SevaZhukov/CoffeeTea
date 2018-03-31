@@ -53,6 +53,11 @@ public class FireService {
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
+    public void getProduct(String id, ProductCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(id), Product.class)
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
     public interface UserCallBack {
         void onSuccess(User user);
 
@@ -67,6 +72,11 @@ public class FireService {
 
     public interface ProductsCallback {
         void onSuccess(List<Product> products);
+
+        void onError(Throwable e);
+    }
+    public interface ProductCallback {
+        void onSuccess(Product product);
 
         void onError(Throwable e);
     }

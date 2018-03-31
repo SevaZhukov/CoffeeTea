@@ -1,5 +1,7 @@
 package com.mrswimmer.coffeetea.data.model.product;
 
+import com.mrswimmer.coffeetea.data.model.Review;
+
 import java.util.ArrayList;
 
 public class Product {
@@ -12,13 +14,14 @@ public class Product {
     int cost;
     int typeId;
     int kindId;
+    ArrayList<Review> reviews = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
     ArrayList<Availability> availabilities = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(String id, int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, int kindId, int rate, int newCost) {
+    public Product(String id, int weight, String description, String name, int cost, ArrayList<String> images, ArrayList<Availability> availabilities, int typeId, int kindId, int rate, int newCost, ArrayList<Review> reviews)  {
         this.weight = weight;
         this.description = description;
         this.name = name;
@@ -30,7 +33,10 @@ public class Product {
         this.id = id;
         this.rate = rate;
         this.newCost = newCost;
+        this.reviews = reviews;
     }
+
+
 
     public int getWeight() {
         return weight;
@@ -124,6 +130,14 @@ public class Product {
         this.newCost = newCost;
     }
 
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     public String getKind() {
         if (getTypeId() == 0) {
             switch (getKindId()) {
@@ -171,6 +185,14 @@ public class Product {
 
     public String getNewCostString() {
         return getNewCost() + " руб";
+    }
+
+    public String findShops() {
+        return "Продается в " + availabilities.size() + " магазинах";
+    }
+
+    public String findReviews() {
+        return "Найдено " + reviews.size() + " отзывов";
     }
 }
 

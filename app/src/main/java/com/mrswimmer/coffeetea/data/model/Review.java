@@ -1,6 +1,6 @@
 package com.mrswimmer.coffeetea.data.model;
 
-class Review {
+public class Review {
     String description;
     int mark;
     String userId;

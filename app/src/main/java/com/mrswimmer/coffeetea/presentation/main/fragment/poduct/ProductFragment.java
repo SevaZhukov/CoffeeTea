@@ -16,12 +16,13 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductFragment extends MvpAppCompatFragment implements ProductFragmentView {
+public class ProductFragment extends BaseFragment implements ProductFragmentView {
     @InjectPresenter
     ProductFragmentPresenter presenter;
 
@@ -66,20 +67,17 @@ public class ProductFragment extends MvpAppCompatFragment implements ProductFrag
     RatingBar rate;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_product, container, false);
-        return v;
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         Bundle bundle = this.getArguments();
         String id = bundle.getString("id");
         presenter.getProduct(id);
         Log.i("code", "prod " + id);
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_product;
     }
 
     @Override

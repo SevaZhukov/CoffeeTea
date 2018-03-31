@@ -17,6 +17,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
 
@@ -26,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CatalogFragment extends MvpAppCompatFragment implements CatalogFragmentView {
+public class CatalogFragment extends BaseFragment implements CatalogFragmentView {
     @InjectPresenter
     CatalogFragmentPresenter presenter;
 
@@ -42,16 +43,8 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
     RecyclerView recyclerView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_catalog, container, false);
-        return v;
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -63,6 +56,11 @@ public class CatalogFragment extends MvpAppCompatFragment implements CatalogFrag
             Log.i("code", "in catalog salebool " + sale);
         }
         presenter.setProductsForRecycler(sale);
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_catalog;
     }
 
     @Override

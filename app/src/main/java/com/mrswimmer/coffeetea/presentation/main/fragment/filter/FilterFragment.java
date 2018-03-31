@@ -19,13 +19,14 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
-public class FilterFragment extends MvpAppCompatFragment implements FilterFragmentView {
+public class FilterFragment extends BaseFragment implements FilterFragmentView {
 
     @InjectPresenter
     FilterFragmentPresenter presenter;
@@ -54,20 +55,17 @@ public class FilterFragment extends MvpAppCompatFragment implements FilterFragme
     String[] sorts = {"По цене ↑", "По цене ↓", "По рейтингу ↑", "По рейтингу ↓"};
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_filter, container, false);
-        return v;
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         SpinnerAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.sign_up_spinner_item, sorts);
         presenter.setSortSpinner(spinner, adapter);
         updateFilter();
 
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_filter;
     }
 
     @OnClick(R.id.filter_choose_kinds)

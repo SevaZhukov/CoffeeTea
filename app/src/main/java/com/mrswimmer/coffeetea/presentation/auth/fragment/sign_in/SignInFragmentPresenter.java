@@ -60,7 +60,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        getViewState().showToast(e.getMessage());
                     }
                 });
 
@@ -68,7 +68,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
 
             @Override
             public void onError(Throwable e) {
-                getViewState().showErrorToast(":(");
+                getViewState().showToast(e.getMessage());
             }
         });
     }

@@ -46,7 +46,7 @@ public class SignUpFragmentPresenter extends MvpPresenter<SignUpFragmentView> {
 
             @Override
             public void onError(Throwable e) {
-                getViewState().showErrorToast(e.getMessage());
+                getViewState().showToast(e.getMessage());
             }
         });
     }

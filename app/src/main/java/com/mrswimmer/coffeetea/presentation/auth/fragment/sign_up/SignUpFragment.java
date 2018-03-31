@@ -17,13 +17,14 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
-public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragmentView {
+public class SignUpFragment extends BaseFragment implements SignUpFragmentView {
     @InjectPresenter
     SignUpFragmentPresenter presenter;
 
@@ -49,16 +50,9 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
     int city;
     String[] cities = {"Новосибирск", "Кемерово"};
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         SpinnerAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.sign_up_spinner_item, cities);
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
@@ -73,6 +67,12 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
             }
         });
     }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_sign_up;
+    }
+
     @OnClick(R.id.sign_up_reg)
     void onRegClick() {
         email = editEmail.getText().toString();
@@ -88,13 +88,8 @@ public class SignUpFragment extends MvpAppCompatFragment implements SignUpFragme
         if (checkOnFillingFields()) {
             presenter.signUp(email, pass);
         } else {
-            showErrorToast("Заполните все поля!");
+            showToast("Заполните все поля!");
         }
-    }
-
-    @Override
-    public void showErrorToast(String error) {
-        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -58,6 +58,10 @@ public class FireService {
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
+    public boolean checkLogIn() {
+        return null == auth.getCurrentUser();
+    }
+
     public interface UserCallBack {
         void onSuccess(User user);
 

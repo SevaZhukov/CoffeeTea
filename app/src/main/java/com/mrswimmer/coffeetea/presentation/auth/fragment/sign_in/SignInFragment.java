@@ -11,11 +11,13 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.base.BaseFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignInFragment extends MvpAppCompatFragment implements SignInFragmentView {
+public class SignInFragment extends BaseFragment implements SignInFragmentView {
     @InjectPresenter
     SignInFragmentPresenter presenter;
 
@@ -31,7 +33,7 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
     @BindView(R.id.sign_in_password)
     EditText editPass;
 
-    @Nullable
+    /*@Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
@@ -41,14 +43,19 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+    }*/
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_sign_in;
     }
 
     @OnClick(R.id.sign_in_enter)
     void onEnterClick() {
-        presenter.goToMain();
+        //presenter.goToMain();
         email = editEmail.getText().toString();
         password = editPass.getText().toString();
-        //enter();
+        enter();
     }
 
     @OnClick(R.id.sign_in_reg)
@@ -56,16 +63,17 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInFragme
         presenter.gotoReg();
     }
 
-    @Override
+    /*@Override
     public void showErrorToast(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     void enter() {
         if (checkOnFillingFields()) {
             presenter.enter(email, password);
         } else {
-            showErrorToast("Заполните все поля!");
+            showToast("Запоните все поля");
+            //showErrorToast("Заполните все поля!");
         }
     }
 

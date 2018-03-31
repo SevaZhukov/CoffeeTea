@@ -1,5 +1,6 @@
 package com.mrswimmer.coffeetea.di.module;
 
+import com.mrswimmer.coffeetea.domain.service.FilterService;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 
 import javax.inject.Singleton;
@@ -13,5 +14,10 @@ public class FireModule {
     @Singleton
     FireService providesService() {
         return new FireService();
+    }
+    @Provides
+    @Singleton
+    FilterService provideFilter() {
+        return new FilterService();
     }
 }

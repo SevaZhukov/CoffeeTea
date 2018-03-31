@@ -15,7 +15,7 @@
         android:text="Кофе и чай"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

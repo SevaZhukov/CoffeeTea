@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CoffeeTea" parent="Theme.Design.NoActionBar">
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">20sp</item><!-- text size in menu-->
+        <item name="android:listPreferredItemHeightSmall">60dp</item><!-- item size in menu-->
+        <item name="listPreferredItemHeightSmall">60dp</item><!-- item size in menu-->
+    </style>
+    <style name="MyRatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">@color/yellow</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
 </resources>

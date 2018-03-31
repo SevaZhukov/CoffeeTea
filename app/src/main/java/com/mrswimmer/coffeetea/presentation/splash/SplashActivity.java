@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             String login = settings.getString(Settings.USER_ID, "no");
             Log.i("code", "first: "+login);
-            if(fireService.checkLogIn()){
+            if(!fireService.checkLogIn()){
                 overridePendingTransition(0,0);
                 TaskStackBuilder.create(getApplicationContext())
                         .addNextIntentWithParentStack(new Intent(getApplicationContext(), AuthActivity.class))

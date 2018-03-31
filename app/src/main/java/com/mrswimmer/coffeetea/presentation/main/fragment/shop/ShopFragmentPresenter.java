@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.review;
+package com.mrswimmer.coffeetea.presentation.main.fragment.shop;
 
 import android.util.Log;
 
@@ -14,12 +14,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 @InjectViewState
-public class ReviewFragmentPresenter extends MvpPresenter<ReviewFragmentView> {
+public class ShopFragmentPresenter extends MvpPresenter<ShopFragmentView> {
 
     @Inject
     FireService fireService;
 
-    public ReviewFragmentPresenter() {
+    public ShopFragmentPresenter() {
         App.getComponent().inject(this);
     }
 

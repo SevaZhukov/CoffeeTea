@@ -23,7 +23,7 @@ import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> {
-    ArrayList<Product> productsForRecycler = new ArrayList<>();
+
     @Inject
     @Local
     Router router;
@@ -55,7 +55,8 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
     }
 
     public void setProductsWithoutFilters(boolean sale) {
-        productsForRecycler.clear();
+        ArrayList<Product> productsForRecycler = new ArrayList<>();
+        //productsForRecycler.clear();
         fireService.getProducts(sale, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
@@ -80,9 +81,5 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
         editor.putBoolean(Settings.SORT, false);
         editor.apply();
         setProductsWithoutFilters(false);
-    }
-
-    public void gotoProd() {
-        router.navigateTo(Screens.PRODUCT_SCREEN);
     }
 }

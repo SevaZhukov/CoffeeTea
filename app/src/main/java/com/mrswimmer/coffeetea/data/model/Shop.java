@@ -2,23 +2,23 @@ package com.mrswimmer.coffeetea.data.model;
 
 import java.util.ArrayList;
 
-class Shop {
+public class Shop {
     String id;
     String adress;
     int beginWork;
     int endWork;
     ArrayList<String> images = new ArrayList<>();
     ArrayList<Review> reviews = new ArrayList<>();
-    String idCity;
+    String city;
 
-    public Shop(String id, String adress, int beginWork, int endWork, ArrayList<String> images, ArrayList<Review> reviews, String idCity) {
+    public Shop(String id, String adress, int beginWork, int endWork, ArrayList<String> images, ArrayList<Review> reviews, String city) {
         this.id = id;
         this.adress = adress;
         this.beginWork = beginWork;
         this.endWork = endWork;
         this.images = images;
         this.reviews = reviews;
-        this.idCity = idCity;
+        this.city = city;
     }
 
     public Shop() {
@@ -72,11 +72,11 @@ class Shop {
         this.reviews = reviews;
     }
 
-    public String getIdCity() {
-        return idCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setIdCity(String idCity) {
-        this.idCity = idCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 }

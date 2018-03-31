@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.poduct;
+package com.mrswimmer.coffeetea.presentation.main.fragment.product;
 
 import android.util.Log;
 
@@ -20,6 +20,7 @@ import ru.terrakok.cicerone.Router;
 @InjectViewState
 public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> {
 
+    String id;
     @Inject
     FireService fireService;
 
@@ -33,6 +34,7 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
     }
 
     public void getProduct(String id) {
+        this.id = id;
         fireService.getProduct(id, new FireService.ProductCallback() {
             @Override
             public void onSuccess(Product product) {
@@ -47,7 +49,8 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
         });
     }
 
-    public void showReviews(ArrayList<Review> reviews) {
-        router.navigateTo(Screens.REVIEWS_SCREEN, reviews);
+    public void gotoReviews() {
+
+        router.navigateTo(Screens.REVIEWS_SCREEN, id);
     }
 }

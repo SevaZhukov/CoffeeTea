@@ -12,9 +12,11 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragmentP
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler.ReviewAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
 import javax.inject.Singleton;
@@ -43,4 +45,8 @@ public interface AppComponent {
     void inject(ReviewAdapter reviewAdapter);
 
     void inject(ReviewFragmentPresenter reviewFragmentPresenter);
+
+    void inject(ShopAdapter shopAdapter);
+
+    void inject(ShopFragmentPresenter shopFragmentPresenter);
 }

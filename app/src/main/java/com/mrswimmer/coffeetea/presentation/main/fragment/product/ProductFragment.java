@@ -1,18 +1,15 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.poduct;
+package com.mrswimmer.coffeetea.presentation.main.fragment.product;
 
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
@@ -20,7 +17,7 @@ import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProductFragment extends BaseFragment implements ProductFragmentView {
     @InjectPresenter
@@ -95,6 +92,10 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         description.setText(product.getDescription());
         findShops.setText(product.findShops());
         findReviews.setText(product.findReviews());
-        presenter.showReviews(product.getReviews());
+    }
+
+    @OnClick(R.id.prod_arrow_reviews)
+    public void onReviewArrowClick() {
+        presenter.gotoReviews();
     }
 }

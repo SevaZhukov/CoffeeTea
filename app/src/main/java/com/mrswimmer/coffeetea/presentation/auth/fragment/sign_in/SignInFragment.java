@@ -52,10 +52,10 @@ public class SignInFragment extends BaseFragment implements SignInFragmentView {
 
     @OnClick(R.id.sign_in_enter)
     void onEnterClick() {
-        //presenter.goToMain();
+        presenter.goToMain();
         email = editEmail.getText().toString();
         password = editPass.getText().toString();
-        enter();
+        //enter();
     }
 
     @OnClick(R.id.sign_in_reg)

@@ -64,8 +64,14 @@ public class FireService {
         return null == auth.getCurrentUser();
     }
 
-    public void getReviews(String id, ReviewsCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(id).child("reviews"), DataSnapshotMapper.listOf(Review.class))
+    public void getReviews(String id, boolean shop, ReviewsCallback callback) {
+        String dir;
+        if(shop) {
+            dir = "shops";
+        } else {
+            dir = "products";
+        }
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child(dir).child(id).child("reviews"), DataSnapshotMapper.listOf(Review.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 

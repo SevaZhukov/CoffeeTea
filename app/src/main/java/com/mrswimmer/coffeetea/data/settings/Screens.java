@@ -19,4 +19,5 @@ public interface Screens {
     String AUTH_ACTIVITY = "auth";
     String REVIEWS_SCREEN = "reviews screen";
     String SHOP_SCREEN = "shop screen";
+    String REVIEWS_SCREEN_FOR_SHOP = "review for shop";
 }

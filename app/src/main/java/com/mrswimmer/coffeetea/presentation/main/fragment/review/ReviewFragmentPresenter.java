@@ -23,8 +23,8 @@ public class ReviewFragmentPresenter extends MvpPresenter<ReviewFragmentView> {
         App.getComponent().inject(this);
     }
 
-    public void setReviewsForRecycler(String id) {
-        fireService.getReviews(id, new FireService.ReviewsCallback() {
+    public void setReviewsForRecycler(String id, boolean shop) {
+        fireService.getReviews(id, shop, new FireService.ReviewsCallback() {
             @Override
             public void onSuccess(List<Review> reviews) {
                 Log.i("code", "reviews size " + reviews.size());
@@ -41,4 +41,5 @@ public class ReviewFragmentPresenter extends MvpPresenter<ReviewFragmentView> {
             }
         });
     }
+
 }

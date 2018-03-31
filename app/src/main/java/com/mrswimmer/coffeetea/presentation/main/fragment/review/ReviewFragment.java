@@ -41,7 +41,7 @@ public class ReviewFragment extends BaseFragment implements ReviewFragmentView {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         Bundle bundle = this.getArguments();
-        presenter.setReviewsForRecycler(bundle.getString("id"));
+        presenter.setReviewsForRecycler(bundle.getString("id"), bundle.getBoolean("shop", false));
     }
 
     @Override

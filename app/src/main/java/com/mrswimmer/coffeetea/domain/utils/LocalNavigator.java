@@ -63,6 +63,14 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 reviewBundle.putString("id", String.valueOf(data));
                 reviewFragment.setArguments(reviewBundle);
                 return reviewFragment;
+            case Screens.REVIEWS_SCREEN_FOR_SHOP:
+                ReviewFragment reviewShopFragment = new ReviewFragment();
+                Bundle reviewShopBundle = new Bundle();
+                reviewShopBundle.putString("id", String.valueOf(data));
+                reviewShopBundle.putBoolean("shop", true);
+                reviewShopFragment.setArguments(reviewShopBundle);
+                return reviewShopFragment;
+
             case Screens.SHOP_SCREEN:
                 return new ShopFragment();
             default:

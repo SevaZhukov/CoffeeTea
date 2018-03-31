@@ -12,6 +12,7 @@ import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
+import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         holder.reviews.setText(content);
         holder.ratingBar.setRating(shop.getRate());
-
+        holder.reviews.setOnClickListener(v -> localRouter.navigateTo(Screens.REVIEWS_SCREEN_FOR_SHOP, shop.getId()));
     }
 
     @Override

@@ -36,7 +36,10 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         Bundle bundle = this.getArguments();
-        boolean choose = bundle.getBoolean("choose", false);
+        boolean choose = false;
+        if(bundle!=null){
+            choose = bundle.getBoolean("choose", false);
+        }
         Log.i("code", "shop choose " + choose);
         presenter.setShopsForRecycler(choose);
     }

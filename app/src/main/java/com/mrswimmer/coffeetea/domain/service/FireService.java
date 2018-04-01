@@ -11,6 +11,7 @@ import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
+import com.mrswimmer.coffeetea.data.model.product.Availability;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
@@ -37,18 +38,6 @@ public class FireService {
                 .map(authResult -> authResult.getUser() != null)
                 .take(1)
                 .subscribe(callBack::onSuccess, callBack::onError);
-    }
-
-    public void getUser(String key) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(key), User.class)
-                .subscribe(user -> {
-                    Log.i("code", "get User " + user.getFirstName());
-                });
-    }
-
-    public void getSaleProducts(ProductsCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(0), DataSnapshotMapper.listOf(Product.class))
-                .subscribe(callback::onSuccess, callback::onError);
     }
 
     public void getID(String email, UserCallBack callback) {
@@ -108,13 +97,42 @@ public class FireService {
 
     //decision dupl problem
     public void checkOnExistThisProductInBasket(String userId, ProductInBasket productInBasket, BasketCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket").orderByChild("productId"), DataSnapshotMapper.listOf(ProductInBasket.class))
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket").orderByChild("productId").equalTo(productInBasket.getProductId()), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
     public void addInExistProductInBasket(String id, int count, String userId) {
         DatabaseReference newProd = reference.child("users").child(userId).child("basket").child(id).child("count");
         newProd.setValue(count);
+    }
+
+    public void deleteFromCatalog(String prodId, String shopId, AvailabilityCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(prodId).child("availabilities").orderByChild("shopId").equalTo(shopId), DataSnapshotMapper.listOf(Availability.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void deleteProd(String prodId, String shopId, int count) {
+        deleteFromCatalog(prodId, shopId, new AvailabilityCallback() {
+            @Override
+            public void onSuccess(List<Availability> availabilities) {
+                Log.i("code", "del from " + availabilities.get(0).getQuantity());
+                String id = availabilities.get(0).getId();
+                DatabaseReference avail = reference.child("products").child(prodId).child("availabilities").child(id);
+                if (availabilities.get(0).getQuantity() - count == 0) {
+                    avail.removeValue();
+                } else {
+                    avail = avail.child("quantity");
+                    avail.setValue(availabilities.get(0).getQuantity() - count);
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("code", "del from error " + e.getMessage());
+            }
+
+        });
     }
 
     public interface UserCallBack {
@@ -159,15 +177,18 @@ public class FireService {
         void onError(Throwable e);
     }
 
+    public interface AvailabilityCallback {
+        //void onSuccess(Availability availability);
+
+        void onError(Throwable e);
+
+        void onSuccess(List<Availability> availabilities);
+    }
+
     public interface BasketCallback {
         void onSuccess(List<ProductInBasket> products);
 
         void onError(Throwable e);
     }
 
-    public interface ProductInBasketCallback {
-        void onSuccess(ProductInBasket product);
-
-        void onError(Throwable e);
-    }
 }

@@ -80,7 +80,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         Product product = ProductFragmentPresenter.curProduct;
         ProductInBasket productInBasket = new ProductInBasket(product.getId(), shop.getId(), product.getName(), shop.getAdress(), shop.getCity(), product.getRate(), product.getCost(), product.getNewCost(), ChooseCountDialog.count);
         String userId = settings.getString(Settings.USER_ID, "0");
-        //decision problem of duplicate prods in basket from one shop & id
         fireService.checkOnExistThisProductInBasket(userId, productInBasket, new FireService.BasketCallback() {
             @Override
             public void onSuccess(List<ProductInBasket> products) {
@@ -88,14 +87,16 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
                 for (int i = 0; i < products.size(); i++) {
                     if (products.get(i).getShopId().equals(productInBasket.getShopId())) {
                         fireService.addInExistProductInBasket(products.get(i).getId(), productInBasket.getCount()+products.get(i).getCount(), userId);
-                        Log.i("code", "exist" + products.get(i).getId());
+                        fireService.deleteProd(product.getId(), shop.getId(), productInBasket.getCount());
                         exist = true;
-                        break;
+                        localRouter.navigateTo(Screens.BASKET_SCREEN);
                     }
                 }
-                Log.i("code", "bool exist");
+                Log.i("code", "bool exist" + exist);
                 if (!exist) {
                     fireService.putProductInBasket(userId, productInBasket);
+                    fireService.deleteProd(product.getId(), shop.getId(), productInBasket.getCount());
+                    localRouter.navigateTo(Screens.BASKET_SCREEN);
                 }
             }
 
@@ -104,7 +105,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
                 Log.i("code", e.getMessage());
             }
         });
-        localRouter.navigateTo(Screens.BASKET_SCREEN);
     }
 
     @Override

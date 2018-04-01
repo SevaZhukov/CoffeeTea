@@ -104,11 +104,13 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
         fireService.getProducts(false, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
+                Log.i("code", "lenght " + products.size());
                 currentList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);
-                getViewState().setResultOfFilter(readyList.size());
+                Log.i("code", "cur size " + currentList.size());
+                /*getViewState().setResultOfFilter(readyList.size());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(Settings.SORT, true);
-                editor.apply();
+                editor.apply();*/
             }
 
             @Override

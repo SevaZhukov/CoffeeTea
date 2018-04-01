@@ -35,8 +35,9 @@ public class FilterService {
             if (product.getTypeId() == type) {
                 for (int j = 0; j < kinds.length; j++) {
                     if (kinds[j] && product.getKindId() == j) {
-                        if (inStock && product.getAvailabilities().size() > 0) {
-                            filteredProductList.add(product);
+                        if (inStock) {
+                            if (product.getAvailabilities().size() > 0)
+                                filteredProductList.add(product);
                         } else
                             filteredProductList.add(product);
                         break;

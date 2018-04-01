@@ -135,6 +135,11 @@ public class FireService {
         });
     }
 
+    public void delFromBasket(String userId, String id) {
+        DatabaseReference prod = reference.child("users").child(userId).child("basket").child(id);
+        prod.removeValue();
+    }
+
     public interface UserCallBack {
         void onSuccess(User user);
 
@@ -178,8 +183,6 @@ public class FireService {
     }
 
     public interface AvailabilityCallback {
-        //void onSuccess(Availability availability);
-
         void onError(Throwable e);
 
         void onSuccess(List<Availability> availabilities);

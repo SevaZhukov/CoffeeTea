@@ -9,6 +9,7 @@ import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivityPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.basket.recycler.ProductsInBasketAdapter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
@@ -27,11 +28,17 @@ import dagger.Component;
 @Component(modules = {SharedPreferencesModule.class, NavigatorModule.class, FireModule.class})
 public interface AppComponent {
     void inject(SplashActivity splashActivity);
+
     void inject(MainActivity mainActivity);
+
     void inject(AuthActivity authActivity);
+
     void inject(SignInFragmentPresenter signInFragmentPresenter);
+
     void inject(SignUpFragmentPresenter signUpFragmentPresenter);
+
     void inject(MainActivityPresenter mainActivityPresenter);
+
     void inject(CatalogFragmentPresenter catalogFragmentPresenter);
 
     void inject(BasketFragmentPresenter basketFragmentPresenter);
@@ -49,4 +56,6 @@ public interface AppComponent {
     void inject(ShopAdapter shopAdapter);
 
     void inject(ShopFragmentPresenter shopFragmentPresenter);
+
+    void inject(ProductsInBasketAdapter productsInBasketAdapter);
 }

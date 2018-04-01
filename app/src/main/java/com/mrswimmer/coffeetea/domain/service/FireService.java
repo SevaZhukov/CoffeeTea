@@ -66,7 +66,7 @@ public class FireService {
 
     public void getReviews(String id, boolean shop, ReviewsCallback callback) {
         String dir;
-        if(shop) {
+        if (shop) {
             dir = "shops";
         } else {
             dir = "products";
@@ -80,6 +80,24 @@ public class FireService {
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
+    public void getShopsById(String shopId, ShopCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("shops").child(shopId), Shop.class)
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void getProducts(boolean sale, ProductsCallback callback) {
+        if (sale)
+            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(1), DataSnapshotMapper.listOf(Product.class))
+                    .subscribe(callback::onSuccess, callback::onError);
+        else
+            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
+                    .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void getProductsWithParams(int typeId, ProductsCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("typeId").equalTo(typeId), DataSnapshotMapper.listOf(Product.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
 
     public interface UserCallBack {
         void onSuccess(User user);
@@ -110,27 +128,16 @@ public class FireService {
 
         void onError(Throwable e);
     }
+
     public interface ShopsCallback {
         void onSuccess(List<Shop> shops);
 
         void onError(Throwable e);
     }
 
-    public void getProducts(boolean sale, ProductsCallback callback) {
-        if (sale)
-            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("newCost").startAt(1), DataSnapshotMapper.listOf(Product.class))
-                    .subscribe(callback::onSuccess, callback::onError);
-        else
-            RxFirebaseDatabase.observeSingleValueEvent(reference.child("products"), DataSnapshotMapper.listOf(Product.class))
-                    .subscribe(callback::onSuccess, callback::onError);
-    }
+    public interface ShopCallback {
+        void onSuccess(Shop shop);
 
-    public void getProductsWithParams(int typeId, ProductsCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("typeId").equalTo(typeId), DataSnapshotMapper.listOf(Product.class))
-                .subscribe(callback::onSuccess, callback::onError);
-    }
-
-    public void addInBasket() {
-
+        void onError(Throwable e);
     }
 }

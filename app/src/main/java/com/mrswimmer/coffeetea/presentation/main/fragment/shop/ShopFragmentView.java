@@ -7,5 +7,5 @@ import com.mrswimmer.coffeetea.data.model.Shop;
 import java.util.ArrayList;
 
 interface ShopFragmentView extends BaseView {
-    void initAdapter(ArrayList<Shop> shops);
+    void initAdapter(ArrayList<Shop> shops, boolean choose);
 }

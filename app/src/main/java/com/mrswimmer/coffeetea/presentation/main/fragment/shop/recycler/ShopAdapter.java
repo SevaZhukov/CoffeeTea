@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,11 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
     @Local
     Router localRouter;
 
-    public ShopAdapter(ArrayList<Shop> shops) {
+    boolean choose = false;
+
+    public ShopAdapter(ArrayList<Shop> shops, boolean choose) {
         this.shops = shops;
+        this.choose = choose;
         App.getComponent().inject(this);
     }
 
@@ -51,6 +55,8 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         holder.reviews.setText(content);
         holder.ratingBar.setRating(shop.getRate());
         holder.reviews.setOnClickListener(v -> localRouter.navigateTo(Screens.REVIEWS_SCREEN_FOR_SHOP, shop.getId()));
+        if(choose)
+            holder.itemView.setOnClickListener(v -> Log.i("code", "touch"));
     }
 
     @Override

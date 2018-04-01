@@ -14,6 +14,8 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmen
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragment;
 
+import java.util.ArrayList;
+
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
 public class LocalNavigator extends SupportFragmentNavigator {
@@ -70,9 +72,15 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 reviewShopBundle.putBoolean("shop", true);
                 reviewShopFragment.setArguments(reviewShopBundle);
                 return reviewShopFragment;
-
             case Screens.SHOP_SCREEN:
                 return new ShopFragment();
+            case Screens.SHOP_SCREEN_CHOOSE:
+                ShopFragment shopFragment = new ShopFragment();
+                Bundle chooseShopBundle = new Bundle();
+                //chooseShopBundle.putStringArrayList("ids", (ArrayList<String>) data);
+                chooseShopBundle.putBoolean("choose", true);
+                shopFragment.setArguments(chooseShopBundle);
+                return shopFragment;
             default:
                 return new CatalogFragment();
         }

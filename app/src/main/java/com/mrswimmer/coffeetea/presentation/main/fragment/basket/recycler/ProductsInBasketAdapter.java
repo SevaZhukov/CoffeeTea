@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
@@ -21,14 +22,14 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Router;
 
 public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBasketViewHolder> {
-    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<ProductInBasket> products = new ArrayList<>();
     private Context context;
 
     @Inject
     @Local
     Router localRouter;
 
-    public ProductsInBasketAdapter(ArrayList<Product> products, Context context) {
+    public ProductsInBasketAdapter(ArrayList<ProductInBasket> products, Context context) {
         this.products = products;
         this.context = context;
         App.getComponent().inject(this);
@@ -37,14 +38,15 @@ public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBask
     @Override
     public ProductsInBasketViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product, parent, false);
+                .inflate(R.layout.item_product_in_basket, parent, false);
         return new ProductsInBasketViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ProductsInBasketViewHolder holder, int position) {
-        Product product = products.get(position);
-        holder.name.setText(product.getName());
+        ProductInBasket product = products.get(position);
+
+        /*holder.name.setText(product.getName());
         holder.type.setText(product.getType());
         holder.kind.setText(product.getKind());
         holder.inStock.setText(product.getInStock());
@@ -57,7 +59,7 @@ public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBask
         if (product.getNewCost() > 0) {
             holder.newCost.setText(product.getNewCostString());
             holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
+        }*/
         //holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -12,6 +13,7 @@ import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 
 import java.util.ArrayList;
@@ -36,7 +38,12 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         Bundle bundle = this.getArguments();
-        presenter.setShopsForRecycler();
+        boolean choose = bundle.getBoolean("choose");
+        Log.i("code", "shop choose " + choose);
+        if (choose)
+            presenter.chooseShopsForRecycler();
+        else
+            presenter.setShopsForRecycler();
     }
 
     @Override
@@ -45,7 +52,7 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
     }
 
     @Override
-    public void initAdapter(ArrayList<Shop> shops) {
-        recyclerView.setAdapter(new ShopAdapter(shops));
+    public void initAdapter(ArrayList<Shop> shops, boolean choose) {
+        recyclerView.setAdapter(new ShopAdapter(shops, choose));
     }
 }

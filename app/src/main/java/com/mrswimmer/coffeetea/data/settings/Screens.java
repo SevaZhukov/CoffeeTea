@@ -20,4 +20,6 @@ public interface Screens {
     String REVIEWS_SCREEN = "reviews screen";
     String SHOP_SCREEN = "shop screen";
     String REVIEWS_SCREEN_FOR_SHOP = "review for shop";
+    String SHOP_SCREEN_TOUCHABLE = "shop touch";
+    String SHOP_SCREEN_CHOOSE = "shop choose";
 }

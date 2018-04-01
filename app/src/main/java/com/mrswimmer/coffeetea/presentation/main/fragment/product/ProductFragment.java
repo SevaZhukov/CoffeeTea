@@ -1,5 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.product;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,11 +16,14 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ProductFragment extends BaseFragment implements ProductFragmentView {
+    boolean fromChooseCount = false;
+
     @InjectPresenter
     ProductFragmentPresenter presenter;
 
@@ -82,9 +86,9 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         name.setText(product.getName());
         type.setText(product.getType());
         kind.setText(product.getKind());
-        weight.setText(product.getWeight()+"");
+        weight.setText(product.getWeight() + "");
         cost.setText(product.getCostString());
-        if(product.getNewCost()>0) {
+        if (product.getNewCost() > 0) {
             cost.setPaintFlags(cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             newCost.setText(product.getNewCostString());
         }
@@ -94,8 +98,37 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         findReviews.setText(product.findReviews());
     }
 
+    @Override
+    public void showChooseCountDialog(int max) {
+        Intent intent = new Intent(getActivity(), ChooseCountDialog.class);
+        intent.putExtra("max", max);
+        startActivity(intent);
+        fromChooseCount = true;
+    }
+
     @OnClick(R.id.prod_arrow_reviews)
     public void onReviewArrowClick() {
         presenter.gotoReviews();
+    }
+
+    @OnClick(R.id.prod_arrow_shops)
+    public void onShopArrowClick() {
+        presenter.gotoShops();
+    }
+
+    @OnClick(R.id.prod_bottom_in_basket)
+    public void onInBasketClick() {
+        fromChooseCount = true;
+        presenter.chooseCount();
+        //fromChooseCount = false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (fromChooseCount && ChooseCountDialog.nextPressed) {
+            int max = ChooseCountDialog.count;
+            presenter.gotoChooseShop(max);
+        }
     }
 }

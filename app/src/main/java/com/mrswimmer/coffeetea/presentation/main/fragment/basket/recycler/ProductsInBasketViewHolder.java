@@ -11,24 +11,29 @@ import com.mrswimmer.coffeetea.R;
 public class ProductsInBasketViewHolder extends RecyclerView.ViewHolder {
 
     TextView name;
-    TextView type;
-    TextView kind;
-    TextView weight;
-    TextView inStock;
-    ImageView image;
+    TextView city;
+    TextView adress;
+    TextView count;
     TextView cost;
     TextView newCost;
+    ImageView delete;
+    ImageView image;
+    ImageView up;
+    ImageView down;
     RatingBar ratingBar;
     public ProductsInBasketViewHolder(View v) {
         super(v);
-        name = v.findViewById(R.id.item_prod_name);
-        type = v.findViewById(R.id.item_prod_type);
-        kind = v.findViewById(R.id.item_prod_kind);
-        weight = v.findViewById(R.id.item_prod_weight);
-        inStock = v.findViewById(R.id.item_prod_in_stock);
-        image = v.findViewById(R.id.item_prod_image);
-        cost = v.findViewById(R.id.item_prod_cost);
-        ratingBar = v.findViewById(R.id.item_prod_rate);
-        newCost = v.findViewById(R.id.item_prod_cost_sale);
+        name = v.findViewById(R.id.item_basket_name);
+        image = v.findViewById(R.id.item_basket_image);
+        cost = v.findViewById(R.id.item_basket_cost);
+        newCost = v.findViewById(R.id.item_basket_cost_sale);
+        ratingBar = v.findViewById(R.id.item_basket_rate);
+        city = v.findViewById(R.id.item_basket_city);
+        adress = v.findViewById(R.id.item_basket_adress);
+        count = v.findViewById(R.id.item_basket_count);
+        up = v.findViewById(R.id.item_basket_up);
+        down = v.findViewById(R.id.item_basket_down);
+        delete = v.findViewById(R.id.item_basket_delete);
+
     }
 }

@@ -5,4 +5,6 @@ import com.mrswimmer.coffeetea.data.model.product.Product;
 
 interface ProductFragmentView extends MvpView {
     void setProduct(Product product);
+
+    void showChooseCountDialog(int max);
 }

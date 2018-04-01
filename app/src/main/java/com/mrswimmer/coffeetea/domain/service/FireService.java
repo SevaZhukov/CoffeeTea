@@ -97,12 +97,24 @@ public class FireService {
 
     public void putProductInBasket(String userId, ProductInBasket productInBasket) {
         DatabaseReference newProd = reference.child("users").child(userId).child("basket").push();
+        productInBasket.setId(newProd.getKey());
         newProd.setValue(productInBasket);
     }
 
     public void getBasket(String userId, BasketCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket"), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    //decision dupl problem
+    public void checkOnExistThisProductInBasket(String userId, ProductInBasket productInBasket, BasketCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket").orderByChild("productId"), DataSnapshotMapper.listOf(ProductInBasket.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void addInExistProductInBasket(String id, int count, String userId) {
+        DatabaseReference newProd = reference.child("users").child(userId).child("basket").child(id).child("count");
+        newProd.setValue(count);
     }
 
     public interface UserCallBack {
@@ -146,8 +158,15 @@ public class FireService {
 
         void onError(Throwable e);
     }
+
     public interface BasketCallback {
         void onSuccess(List<ProductInBasket> products);
+
+        void onError(Throwable e);
+    }
+
+    public interface ProductInBasketCallback {
+        void onSuccess(ProductInBasket product);
 
         void onError(Throwable e);
     }

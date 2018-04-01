@@ -24,6 +24,7 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmen
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -68,7 +69,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         holder.reviews.setText(content);
         holder.ratingBar.setRating(shop.getRate());
         holder.reviews.setOnClickListener(v -> localRouter.navigateTo(Screens.REVIEWS_SCREEN_FOR_SHOP, shop.getId()));
-        if(choose)
+        if (choose)
             holder.itemView.setOnClickListener(v -> {
                 Log.i("code", "touch");
                 addInBasket(shop);
@@ -79,9 +80,33 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         Product product = ProductFragmentPresenter.curProduct;
         ProductInBasket productInBasket = new ProductInBasket(product.getId(), shop.getId(), product.getName(), shop.getAdress(), shop.getCity(), product.getRate(), product.getCost(), product.getNewCost(), ChooseCountDialog.count);
         String userId = settings.getString(Settings.USER_ID, "0");
-        fireService.putProductInBasket(userId, productInBasket);
+        //decision problem of duplicate prods in basket from one shop & id
+        fireService.checkOnExistThisProductInBasket(userId, productInBasket, new FireService.BasketCallback() {
+            @Override
+            public void onSuccess(List<ProductInBasket> products) {
+                boolean exist = false;
+                for (int i = 0; i < products.size(); i++) {
+                    if (products.get(i).getShopId().equals(productInBasket.getShopId())) {
+                        fireService.addInExistProductInBasket(products.get(i).getId(), productInBasket.getCount()+products.get(i).getCount(), userId);
+                        Log.i("code", "exist" + products.get(i).getId());
+                        exist = true;
+                        break;
+                    }
+                }
+                Log.i("code", "bool exist");
+                if (!exist) {
+                    fireService.putProductInBasket(userId, productInBasket);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("code", e.getMessage());
+            }
+        });
         localRouter.navigateTo(Screens.BASKET_SCREEN);
     }
+
     @Override
     public int getItemCount() {
         return shops.size();

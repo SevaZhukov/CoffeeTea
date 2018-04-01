@@ -1,7 +1,6 @@
 package com.mrswimmer.coffeetea.data.model;
 
-public class ProductInBasket
-{
+public class ProductInBasket {
     private String productId;
     private String shopId;
     private String name;
@@ -11,6 +10,7 @@ public class ProductInBasket
     private int cost;
     private int newCost;
     private int count;
+    private String id;
 
     public ProductInBasket(String productId, String shopId, String name, String adress, String city, int productRate, int cost, int newCost, int count) {
         this.productId = productId;
@@ -24,7 +24,28 @@ public class ProductInBasket
         this.count = count;
     }
 
+    public ProductInBasket(String productId, String shopId, String name, String adress, String city, int productRate, int cost, int newCost, int count, String id) {
+        this.productId = productId;
+        this.shopId = shopId;
+        this.name = name;
+        this.adress = adress;
+        this.city = city;
+        this.productRate = productRate;
+        this.cost = cost;
+        this.newCost = newCost;
+        this.count = count;
+        this.id = id;
+    }
+
     public ProductInBasket() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getProductId() {

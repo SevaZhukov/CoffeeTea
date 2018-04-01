@@ -106,13 +106,13 @@ public class FireService {
         newProd.setValue(count);
     }
 
-    public void deleteFromCatalog(String prodId, String shopId, AvailabilityCallback callback) {
+    public void getAvals(String prodId, String shopId, AvailabilityCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(prodId).child("availabilities").orderByChild("shopId").equalTo(shopId), DataSnapshotMapper.listOf(Availability.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
     public void deleteProd(String prodId, String shopId, int count) {
-        deleteFromCatalog(prodId, shopId, new AvailabilityCallback() {
+        getAvals(prodId, shopId, new AvailabilityCallback() {
             @Override
             public void onSuccess(List<Availability> availabilities) {
                 Log.i("code", "del from " + availabilities.get(0).getQuantity());
@@ -135,9 +135,24 @@ public class FireService {
         });
     }
 
-    public void delFromBasket(String userId, String id) {
+    public void delFromBasket(String userId, String id, ProductInBasket product) {
+        restoreProducts(product);
         DatabaseReference prod = reference.child("users").child(userId).child("basket").child(id);
         prod.removeValue();
+    }
+    public void restoreProducts(ProductInBasket product) {
+        getAvals(product.getProductId(), product.getShopId(), new AvailabilityCallback() {
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onSuccess(List<Availability> availabilities) {
+
+            }
+        });
+        //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);
     }
 
     public interface UserCallBack {

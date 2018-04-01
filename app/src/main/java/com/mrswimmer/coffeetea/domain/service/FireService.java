@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.kelvinapps.rxfirebase.DataSnapshotMapper;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
+import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
 import com.mrswimmer.coffeetea.data.model.product.Product;
@@ -94,8 +95,13 @@ public class FireService {
                     .subscribe(callback::onSuccess, callback::onError);
     }
 
-    public void getProductsWithParams(int typeId, ProductsCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").orderByChild("typeId").equalTo(typeId), DataSnapshotMapper.listOf(Product.class))
+    public void putProductInBasket(String userId, ProductInBasket productInBasket) {
+        DatabaseReference newProd = reference.child("users").child(userId).child("basket").push();
+        newProd.setValue(productInBasket);
+    }
+
+    public void getBasket(String userId, BasketCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket"), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
@@ -137,6 +143,11 @@ public class FireService {
 
     public interface ShopCallback {
         void onSuccess(Shop shop);
+
+        void onError(Throwable e);
+    }
+    public interface BasketCallback {
+        void onSuccess(List<ProductInBasket> products);
 
         void onError(Throwable e);
     }

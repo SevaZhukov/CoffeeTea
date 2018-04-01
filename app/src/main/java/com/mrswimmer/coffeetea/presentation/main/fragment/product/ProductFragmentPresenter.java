@@ -25,7 +25,7 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
 
     String id;
     public static Product curProduct;
-    public static int countShops = 0;
+    public static ArrayList<String> keys = new ArrayList<>();
     @Inject
     FireService fireService;
 
@@ -61,14 +61,12 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
     }
 
     public void gotoShops() {
-        ArrayList<Availability> availabilities = new ArrayList<>();
-        availabilities = curProduct.getAvailabilities();
+        ArrayList<Availability> availabilities = curProduct.getAvailabilities();
         router.navigateTo(Screens.SHOP_SCREEN_TOUCHABLE, availabilities);
     }
 
     public void chooseCount() {
-        ArrayList<Availability> availabilities = new ArrayList<>();
-        availabilities = curProduct.getAvailabilities();
+        ArrayList<Availability> availabilities = curProduct.getAvailabilities();
         int max = 0;
         for (int i = 0; i < availabilities.size(); i++) {
             if (availabilities.get(i).getQuantity() > max)
@@ -78,13 +76,12 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
     }
 
     public void gotoChooseShop(int max) {
+        keys.clear();
         ArrayList<Availability> availabilities = curProduct.getAvailabilities();
         for (int i = 0; i < availabilities.size(); i++) {
             if (availabilities.get(i).getQuantity() >= max)
-                countShops++;
-        }/*
-        router.navigateTo(Screens.SHOP_SCREEN_CHOOSE, ids);*/
-
+                keys.add(availabilities.get(i).getShopId());
+        }
         router.navigateTo(Screens.SHOP_SCREEN_CHOOSE);
     }
 }

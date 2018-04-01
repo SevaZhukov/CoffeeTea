@@ -1,7 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.shop;
 
-import com.mrswimmer.coffeetea.data.base.BaseView;
-import com.mrswimmer.coffeetea.data.model.Review;
+import com.mrswimmer.coffeetea.presentation.base.BaseView;
 import com.mrswimmer.coffeetea.data.model.Shop;
 
 import java.util.ArrayList;

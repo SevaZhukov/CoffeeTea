@@ -95,7 +95,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         newProd = reference.child("products").push();
         newProd.setValue(new Product(newProd.getKey(), 100, "OK", "эКспрессо", 499, images, availabilities, 0, 3, 3, -1,reviews));
         Log.i("code", "OK");*/
-        DatabaseReference newShop = reference.child("shops").push();
+        /*DatabaseReference newShop = reference.child("shops").push();
         ArrayList<String> images = new ArrayList<>();
         images.add("http://tadviser.ru/images/8/8d/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D1%8B_%D1%87%D0%B0%D1%8F_%D0%B8_%D0%BA%D0%BE%D1%84%D0%B5.jpg");
         images.add("url2");
@@ -108,8 +108,8 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
         newShop.setValue(new Shop(newShop.getKey(), "Строителей 36", 9, 18, images, reviews, "Кемерово", 5));
         newShop = reference.child("shops").push();
         newShop.setValue(new Shop(newShop.getKey(), "Шарага 12", 10, 21, images, reviews, "Кемерово", 3));
-        Log.i("code", "OK");
-        //router.navigateTo(Screens.SIGN_UP_SCREEN);
+        Log.i("code", "OK");*/
+        router.navigateTo(Screens.SIGN_UP_SCREEN);
     }
 
     void goToMain() {

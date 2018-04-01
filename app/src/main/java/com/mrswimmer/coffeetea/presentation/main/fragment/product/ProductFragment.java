@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.base.BaseFragment;
+import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ProductFragment extends BaseFragment implements ProductFragmentView {
-    boolean fromChooseCount = false;
+     boolean fromChooseCount = false;
 
     @InjectPresenter
     ProductFragmentPresenter presenter;
@@ -120,7 +120,6 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
     public void onInBasketClick() {
         fromChooseCount = true;
         presenter.chooseCount();
-        //fromChooseCount = false;
     }
 
     @Override
@@ -129,6 +128,7 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         if (fromChooseCount && ChooseCountDialog.nextPressed) {
             int max = ChooseCountDialog.count;
             presenter.gotoChooseShop(max);
+            fromChooseCount = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -11,10 +12,16 @@ import android.view.ViewGroup;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
+import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
+import com.mrswimmer.coffeetea.domain.service.FireService;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import java.util.ArrayList;
 
@@ -28,6 +35,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
     @Inject
     @Local
     Router localRouter;
+
+    @Inject
+    FireService fireService;
+
+    @Inject
+    SharedPreferences settings;
 
     boolean choose = false;
 
@@ -56,9 +69,19 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         holder.ratingBar.setRating(shop.getRate());
         holder.reviews.setOnClickListener(v -> localRouter.navigateTo(Screens.REVIEWS_SCREEN_FOR_SHOP, shop.getId()));
         if(choose)
-            holder.itemView.setOnClickListener(v -> Log.i("code", "touch"));
+            holder.itemView.setOnClickListener(v -> {
+                Log.i("code", "touch");
+                addInBasket(shop);
+            });
     }
 
+    void addInBasket(Shop shop) {
+        Product product = ProductFragmentPresenter.curProduct;
+        ProductInBasket productInBasket = new ProductInBasket(product.getId(), shop.getId(), product.getName(), shop.getAdress(), shop.getCity(), product.getRate(), product.getCost(), product.getNewCost(), ChooseCountDialog.count);
+        String userId = settings.getString(Settings.USER_ID, "0");
+        fireService.putProductInBasket(userId, productInBasket);
+        localRouter.navigateTo(Screens.BASKET_SCREEN);
+    }
     @Override
     public int getItemCount() {
         return shops.size();

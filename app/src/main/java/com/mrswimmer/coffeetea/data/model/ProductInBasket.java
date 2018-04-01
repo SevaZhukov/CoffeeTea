@@ -7,12 +7,12 @@ public class ProductInBasket
     private String name;
     private String adress;
     private String city;
-    private String productRate;
+    private int productRate;
     private int cost;
     private int newCost;
     private int count;
 
-    public ProductInBasket(String productId, String shopId, String name, String adress, String city, String productRate, int cost, int newCost, int count) {
+    public ProductInBasket(String productId, String shopId, String name, String adress, String city, int productRate, int cost, int newCost, int count) {
         this.productId = productId;
         this.shopId = shopId;
         this.name = name;
@@ -67,11 +67,11 @@ public class ProductInBasket
         this.city = city;
     }
 
-    public String getProductRate() {
+    public int getProductRate() {
         return productRate;
     }
 
-    public void setProductRate(String productRate) {
+    public void setProductRate(int productRate) {
         this.productRate = productRate;
     }
 

@@ -12,7 +12,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.base.BaseActivity;
+import com.mrswimmer.coffeetea.presentation.base.BaseActivity;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import butterknife.BindView;
 

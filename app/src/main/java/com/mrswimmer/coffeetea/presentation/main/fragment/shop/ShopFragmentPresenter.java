@@ -27,13 +27,16 @@ public class ShopFragmentPresenter extends MvpPresenter<ShopFragmentView> {
         App.getComponent().inject(this);
     }
 
-    public void setShopsForRecycler() {
+    public void setShopsForRecycler(boolean choose) {
         fireService.getShops(new FireService.ShopsCallback() {
             @Override
             public void onSuccess(List<Shop> shops) {
                 ArrayList<Shop> array = (ArrayList<Shop>) shops;
                 Log.i("code", "shops " + array.size());
-                getViewState().initAdapter(array, false);
+                if (choose)
+                    filterShops(array);
+                else
+                    getViewState().initAdapter(array, false);
             }
 
             @Override
@@ -43,34 +46,13 @@ public class ShopFragmentPresenter extends MvpPresenter<ShopFragmentView> {
         });
     }
 
-    public void chooseShopsForRecycler() {
-        Product product = ProductFragmentPresenter.curProduct;
-        ArrayList<Shop> shops = new ArrayList<Shop>();
-        final int[] countShop = {0};
-        for (int i = 0; i < product.getAvailabilities().size(); i++) {
-            if (product.getAvailabilities().get(i).getQuantity() >= ChooseCountDialog.count) {
-                int finalI = i;
-                fireService.getShopsById(product.getAvailabilities().get(i).getShopId(), new FireService.ShopCallback() {
-                    @Override
-                    public void onSuccess(Shop shop) {
-                        shops.add(shop);
-                        countShop[0]++;
-                        Log.i("code", "shop #" + finalI + shop.getAdress());
-                        if (countShop[0] == ProductFragmentPresenter.countShops) {
-                            Log.i("code", "shops " + shops.size());
-                            //getViewState().initAdapter(shops, true);
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("code", e.getMessage());
-                    }
-                });
-            }
+    void filterShops(ArrayList<Shop> shops) {
+        ArrayList<Shop> array = new ArrayList<>();
+        for (int i = 0; i < shops.size(); i++) {
+            if (ProductFragmentPresenter.keys.contains(shops.get(i).getId()))
+                array.add(shops.get(i));
         }
-
-
+        Log.i("code", "shops choose " + array.size());
+        getViewState().initAdapter(array, true);
     }
 }

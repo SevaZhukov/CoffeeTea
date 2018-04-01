@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.data.base;
+package com.mrswimmer.coffeetea.presentation.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
-import com.mrswimmer.coffeetea.R;
 
 import butterknife.ButterKnife;
 

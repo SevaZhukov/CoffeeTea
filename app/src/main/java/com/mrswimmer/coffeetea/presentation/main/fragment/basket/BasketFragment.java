@@ -2,11 +2,13 @@ package com.mrswimmer.coffeetea.presentation.main.fragment.basket;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BasketFragment extends BaseFragment implements BasketFragmentView {
     @InjectPresenter
@@ -30,6 +33,12 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
 
     @BindView(R.id.basket_recycler)
     RecyclerView recyclerView;
+    @BindView(R.id.basket_bottom)
+    ConstraintLayout bottomLayout;
+    @BindView(R.id.basket_bottom_sum)
+    TextView sumText;
+    @BindView(R.id.basket_empty_text)
+    TextView emptyText;
 
     @ProvidePresenter
     public BasketFragmentPresenter presenter() {
@@ -44,6 +53,7 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
         presenter.setRecycler();
     }
 
+
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_basket;
@@ -52,5 +62,27 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
     @Override
     public void initAdapter(ArrayList<ProductInBasket> products) {
         recyclerView.setAdapter(new ProductsInBasketAdapter(products, getActivity()));
+    }
+
+    @OnClick(R.id.basket_bottom_to_order)
+    void onToOrdetClick() {
+
+    }
+    @Override
+    public void setBottomVisible(boolean visible) {
+        if (visible)
+            bottomLayout.setVisibility(View.VISIBLE);
+        else
+            bottomLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setSum(int sum) {
+        sumText.setText("Сумма: " + sum + " руб");
+    }
+
+    @Override
+    public void setEmptyText() {
+        emptyText.setVisibility(View.VISIBLE);
     }
 }

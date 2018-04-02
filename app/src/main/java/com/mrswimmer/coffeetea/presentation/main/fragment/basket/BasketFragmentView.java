@@ -9,4 +9,7 @@ import java.util.List;
 
 interface BasketFragmentView extends BaseView {
     void initAdapter(ArrayList<ProductInBasket> products);
+    void setBottomVisible(boolean visible);
+    void setSum(int sum);
+    void setEmptyText();
 }

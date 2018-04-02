@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
+import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 
@@ -32,12 +33,29 @@ public class BasketFragmentPresenter extends MvpPresenter<BasketFragmentView> {
             @Override
             public void onSuccess(List<ProductInBasket> products) {
                 ArrayList<ProductInBasket> arrayList = (ArrayList<ProductInBasket>) products;
-                getViewState().initAdapter(arrayList);
+                if(products.size()==0) {
+                    getViewState().setBottomVisible(false);
+                    getViewState().setEmptyText();
+                } else {
+                    getViewState().initAdapter(arrayList);
+                    getViewState().setBottomVisible(true);
+                    int sum=0;
+                    for(int i=0; i<products.size(); i++) {
+                        ProductInBasket product = products.get(i);
+                        if(product.getNewCost()>0)
+                            sum+=product.getNewCost()*product.getCount();
+                        else
+                            sum+=product.getCost()*product.getCount();
+                    }
+                    getViewState().setSum(sum);
+                }
             }
 
             @Override
             public void onError(Throwable e) {
                 getViewState().showToast(e.getMessage());
+                getViewState().setBottomVisible(false);
+                getViewState().setEmptyText();
             }
         });
     }

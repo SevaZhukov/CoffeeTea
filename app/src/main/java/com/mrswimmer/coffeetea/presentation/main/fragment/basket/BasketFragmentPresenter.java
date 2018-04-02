@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
+import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
@@ -13,6 +14,7 @@ import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,6 +24,7 @@ import ru.terrakok.cicerone.Router;
 @InjectViewState
 public class BasketFragmentPresenter extends MvpPresenter<BasketFragmentView> {
     ArrayList<ProductInBasket> arrayList;
+    int sum=0;
     @Inject
     FireService fireService;
     @Inject
@@ -47,7 +50,6 @@ public class BasketFragmentPresenter extends MvpPresenter<BasketFragmentView> {
                 } else {
                     getViewState().initAdapter(arrayList);
                     getViewState().setBottomVisible(true);
-                    int sum=0;
                     for(int i=0; i<products.size(); i++) {
                         ProductInBasket product = products.get(i);
                         if(product.getNewCost()>0)
@@ -70,7 +72,9 @@ public class BasketFragmentPresenter extends MvpPresenter<BasketFragmentView> {
 
     public void toOrder() {
         String userId = settings.getString(Settings.USER_ID, "0");
-        fireService.makeOrder(userId, arrayList);
+        Date date = new Date();
+        Order order = new Order(arrayList, sum, date);
+        fireService.makeOrder(userId, order);
         fireService.clearBasket(userId);
         localRouter.replaceScreen(Screens.ORDERS_SCREEN);
     }

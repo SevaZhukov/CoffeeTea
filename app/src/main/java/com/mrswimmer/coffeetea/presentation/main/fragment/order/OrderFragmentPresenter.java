@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
+import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
@@ -35,42 +36,18 @@ public class OrderFragmentPresenter extends MvpPresenter<OrderFragmentView> {
 
     public void setRecycler() {
         String userId = settings.getString(Settings.USER_ID, "0");
-        fireService.getBasket(userId, new FireService.BasketCallback() {
+        fireService.getOrders(userId, new FireService.OrdersCallback() {
             @Override
-            public void onSuccess(List<ProductInBasket> products) {
-                arrayList = (ArrayList<ProductInBasket>) products;
-
-                if(products.size()==0) {
-                    getViewState().setBottomVisible(false);
-                    getViewState().setEmptyText();
-                } else {
-                    getViewState().initAdapter(arrayList);
-                    getViewState().setBottomVisible(true);
-                    int sum=0;
-                    for(int i=0; i<products.size(); i++) {
-                        ProductInBasket product = products.get(i);
-                        if(product.getNewCost()>0)
-                            sum+=product.getNewCost()*product.getCount();
-                        else
-                            sum+=product.getCost()*product.getCount();
-                    }
-                    getViewState().setSum(sum);
-                }
+            public void onSuccess(List<Order> orders) {
+                ArrayList<Order> arrayList = (ArrayList<Order>) orders;
+                getViewState().initAdapter(arrayList);
             }
 
             @Override
             public void onError(Throwable e) {
-                getViewState().showToast(e.getMessage());
-                getViewState().setBottomVisible(false);
-                getViewState().setEmptyText();
+
             }
         });
     }
 
-    public void toOrder() {
-        String userId = settings.getString(Settings.USER_ID, "0");
-        fireService.makeOrder(userId, arrayList);
-        fireService.clearBasket(userId);
-        localRouter.replaceScreen(Screens.ORDERS_SCREEN);
-    }
 }

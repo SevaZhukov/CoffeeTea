@@ -2,7 +2,6 @@ package com.mrswimmer.coffeetea.presentation.main.fragment.order;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,14 +10,13 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.model.ProductInBasket;
+import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.order.recycler.OrderAdapter;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class OrderFragment extends BaseFragment implements OrderFragmentView {
     @InjectPresenter
@@ -49,8 +47,8 @@ public class OrderFragment extends BaseFragment implements OrderFragmentView {
     }
 
     @Override
-    public void initAdapter(ArrayList<ProductInBasket> products) {
-        recyclerView.setAdapter(new OrderAdapter(products, getActivity()));
+    public void initAdapter(ArrayList<Order> orders) {
+        recyclerView.setAdapter(new OrderAdapter(orders));
     }
 
     @Override

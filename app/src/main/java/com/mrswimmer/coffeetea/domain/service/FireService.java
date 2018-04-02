@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.kelvinapps.rxfirebase.DataSnapshotMapper;
 import com.kelvinapps.rxfirebase.RxFirebaseAuth;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
+import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
@@ -16,6 +17,7 @@ import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FireService {
@@ -160,14 +162,26 @@ public class FireService {
         //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);
     }
 
-    public void makeOrder(String userId, ArrayList<ProductInBasket> products) {
+    public void makeOrder(String userId, ArrayList<ProductInBasket> products, int sum, Date date) {
         DatabaseReference order = reference.child("orders").child(userId);
         order.setValue(products);
+
     }
 
     public void clearBasket(String userId) {
         DatabaseReference prod = reference.child("users").child(userId).child("basket");
         prod.removeValue();
+    }
+
+    public void makeOrder(String userId, Order order) {
+        DatabaseReference dref = reference.child("orders").child(userId).push();
+        order.setId(dref.getKey());
+        dref.setValue(order);
+    }
+
+    public void getOrders(String userId, OrdersCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").child(userId), DataSnapshotMapper.listOf(Order.class))
+                .subscribe(callback::onSuccess, callback::onError);
     }
 
     public interface UserCallBack {
@@ -223,5 +237,9 @@ public class FireService {
 
         void onError(Throwable e);
     }
+    public interface OrdersCallback {
+        void onSuccess(List<Order> orders);
 
+        void onError(Throwable e);
+    }
 }

@@ -82,7 +82,6 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 shopFragment.setArguments(chooseShopBundle);
                 return shopFragment;
             case Screens.ORDERS_SCREEN:
-                return new
             default:
                 return new CatalogFragment();
         }

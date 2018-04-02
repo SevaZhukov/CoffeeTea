@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
@@ -22,7 +23,7 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Router;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
-    private ArrayList<ProductInBasket> products = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
     private Context context;
 
     @Inject
@@ -33,9 +34,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     @Inject
     SharedPreferences settings;
 
-    public OrderAdapter(ArrayList<ProductInBasket> products, Context context) {
-        this.products = products;
-        this.context = context;
+    public OrderAdapter(ArrayList<Order> orders) {
+        this.orders = orders;
         App.getComponent().inject(this);
     }
 
@@ -48,35 +48,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
     @Override
     public void onBindViewHolder(OrderViewHolder holder, int position) {
-        ProductInBasket product = products.get(position);
-        holder.ratingBar.setRating(product.getProductRate());
-        holder.adress.setText(product.getAdress());
-        holder.city.setText(product.getCity());
-        holder.name.setText(product.getName());
-        holder.count.setText(product.getCount() + "");
-        holder.delete.setOnClickListener(v -> {
-            fireService.delFromBasket(settings.getString(Settings.USER_ID, "0"), product.getId(), product);
-            localRouter.replaceScreen(Screens.BASKET_SCREEN);
-        });
-        /*holder.name.setText(product.getName());
-        holder.type.setText(product.getType());
-        holder.kind.setText(product.getKind());
-        holder.inStock.setText(product.getInStock());
-        holder.ratingBar.setRating(product.getRate());
-        holder.cost.setText(product.getCostString());
-        Picasso.with(context)
-                .load(product.getImages().get(0))
-                .into(holder.image);
-        holder.itemView.setOnClickListener(v -> localRouter.navigateTo(Screens.PRODUCT_SCREEN, product.getId()));
-        if (product.getNewCost() > 0) {
-            holder.newCost.setText(product.getNewCostString());
-            holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }*/
-        //holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        Order order = orders.get(position);
+        holder.id.setText(order.getId());
+        holder.cost.setText(order.getSum());
+        holder.date.setText(order.getDateString());
+        holder.delete.setOnClickListener(v -> deleteOrder(order));
+        holder.show.setOnClickListener(v -> showOrder(order));
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return orders.size();
+    }
+
+    void deleteOrder(Order order) {
+
+    }
+
+    void showOrder(Order order) {
+
     }
 }

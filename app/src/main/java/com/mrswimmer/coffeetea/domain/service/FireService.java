@@ -112,6 +112,7 @@ public class FireService {
     }
 
     public void deleteProd(String prodId, String shopId, int count) {
+        Log.i("code", "del");
         getAvals(prodId, shopId, new AvailabilityCallback() {
             @Override
             public void onSuccess(List<Availability> availabilities) {
@@ -140,16 +141,19 @@ public class FireService {
         DatabaseReference prod = reference.child("users").child(userId).child("basket").child(id);
         prod.removeValue();
     }
+
     public void restoreProducts(ProductInBasket product) {
         getAvals(product.getProductId(), product.getShopId(), new AvailabilityCallback() {
             @Override
             public void onError(Throwable e) {
-
+                Log.i("code", "restore error " + e.getMessage());
             }
 
             @Override
             public void onSuccess(List<Availability> availabilities) {
-
+                Log.i("code", "restore suc");
+                DatabaseReference avail = reference.child("products").child(product.getProductId()).child("availabilities").child(availabilities.get(0).getId()).child("quantity");
+                avail.setValue(availabilities.get(0).getQuantity()+product.getCount());
             }
         });
         //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);

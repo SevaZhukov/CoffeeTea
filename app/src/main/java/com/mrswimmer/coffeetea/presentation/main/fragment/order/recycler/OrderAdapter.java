@@ -24,7 +24,6 @@ import ru.terrakok.cicerone.Router;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     private ArrayList<Order> orders = new ArrayList<>();
-    private Context context;
 
     @Inject
     @Local
@@ -42,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     @Override
     public OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product_in_basket, parent, false);
+                .inflate(R.layout.item_order, parent, false);
         return new OrderViewHolder(v);
     }
 
@@ -50,7 +49,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     public void onBindViewHolder(OrderViewHolder holder, int position) {
         Order order = orders.get(position);
         holder.id.setText(order.getId());
-        holder.cost.setText(order.getSum());
+        holder.cost.setText(order.getSum()+"");
         holder.date.setText(order.getDateString());
         holder.delete.setOnClickListener(v -> deleteOrder(order));
         holder.show.setOnClickListener(v -> showOrder(order));
@@ -66,6 +65,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     }
 
     void showOrder(Order order) {
-
+        localRouter.navigateTo(Screens.BASKET_OF_ORDER_SCREEN, order.getId());
     }
 }

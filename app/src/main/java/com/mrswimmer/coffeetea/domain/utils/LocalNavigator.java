@@ -7,9 +7,11 @@ import android.support.v4.app.FragmentManager;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
+import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.order.OrderFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragment;
@@ -82,6 +84,13 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 shopFragment.setArguments(chooseShopBundle);
                 return shopFragment;
             case Screens.ORDERS_SCREEN:
+                return new OrderFragment();
+            case Screens.BASKET_OF_ORDER_SCREEN:
+                Bundle booBundle = new Bundle();
+                booBundle.putString("id", (String) data);
+                BasketFragment basketFragment = new BasketFragment();
+                basketFragment.setArguments(booBundle);
+                return basketFragment;
             default:
                 return new CatalogFragment();
         }

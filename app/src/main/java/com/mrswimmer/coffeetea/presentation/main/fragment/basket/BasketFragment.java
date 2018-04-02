@@ -5,26 +5,19 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
-import com.mrswimmer.coffeetea.presentation.base.BaseActivity;
 import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.recycler.ProductsInBasketAdapter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BasketFragment extends BaseFragment implements BasketFragmentView {
@@ -50,7 +43,13 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        presenter.setRecycler();
+        Bundle bundle = this.getArguments();
+        if(bundle!=null) {
+            String orderId = bundle.getString("id");
+            presenter.setOrderRecycler(orderId);
+        } else {
+            presenter.setRecycler();
+        }
     }
 
 
@@ -60,12 +59,12 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
     }
 
     @Override
-    public void initAdapter(ArrayList<ProductInBasket> products) {
-        recyclerView.setAdapter(new ProductsInBasketAdapter(products, getActivity()));
+    public void initAdapter(ArrayList<ProductInBasket> products, boolean orders) {
+        recyclerView.setAdapter(new ProductsInBasketAdapter(products, getActivity(), orders));
     }
 
     @OnClick(R.id.basket_bottom_to_order)
-    void onToOrdetClick() {
+    void onToOrderClick() {
         presenter.toOrder();
     }
     @Override

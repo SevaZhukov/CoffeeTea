@@ -7,19 +7,19 @@ public class Order {
     ArrayList<ProductInBasket> products;
     int sum;
     Date date;
-    private String id;
-
-    public Order(ArrayList<ProductInBasket> products, int sum, Date date) {
-        this.products = products;
-        this.sum = sum;
-        this.date = date;
-    }
+    String id;
 
     public Order(ArrayList<ProductInBasket> products, int sum, Date date, String id) {
         this.products = products;
         this.sum = sum;
         this.date = date;
         this.id = id;
+    }
+
+    public Order(ArrayList<ProductInBasket> products, int sum, Date date) {
+        this.products = products;
+        this.sum = sum;
+        this.date = date;
     }
 
     public Order() {

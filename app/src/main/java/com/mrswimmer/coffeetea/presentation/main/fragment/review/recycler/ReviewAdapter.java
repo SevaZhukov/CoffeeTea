@@ -1,7 +1,5 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler;
 
-import android.content.Context;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +8,7 @@ import android.view.ViewGroup;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.Review;
-import com.mrswimmer.coffeetea.data.model.product.Product;
-import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

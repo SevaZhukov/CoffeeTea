@@ -1,6 +1,7 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.order;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -40,6 +41,7 @@ public class OrderFragmentPresenter extends MvpPresenter<OrderFragmentView> {
             @Override
             public void onSuccess(List<Order> orders) {
                 ArrayList<Order> arrayList = (ArrayList<Order>) orders;
+                //Log.i("code", orders.get(0).getId()+"");
                 getViewState().initAdapter(arrayList);
             }
 

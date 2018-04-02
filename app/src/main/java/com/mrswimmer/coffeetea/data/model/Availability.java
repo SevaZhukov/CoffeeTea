@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.data.model.product;
+package com.mrswimmer.coffeetea.data.model;
 
 public class Availability {
     int quantity;

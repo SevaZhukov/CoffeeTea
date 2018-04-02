@@ -5,12 +5,9 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
-import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
-import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import java.util.ArrayList;
 import java.util.List;

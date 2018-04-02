@@ -1,6 +1,6 @@
 package com.mrswimmer.coffeetea.domain.service;
 
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 
 import java.util.ArrayList;
 import java.util.Collections;

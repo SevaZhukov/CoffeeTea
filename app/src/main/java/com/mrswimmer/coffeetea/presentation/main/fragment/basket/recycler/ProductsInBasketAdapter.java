@@ -2,7 +2,6 @@ package com.mrswimmer.coffeetea.presentation.main.fragment.basket.recycler;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,10 @@ import android.view.ViewGroup;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
-import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,6 +24,7 @@ import ru.terrakok.cicerone.Router;
 public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBasketViewHolder> {
     private ArrayList<ProductInBasket> products = new ArrayList<>();
     private Context context;
+    boolean orders;
 
     @Inject
     @Local
@@ -36,9 +34,10 @@ public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBask
     @Inject
     SharedPreferences settings;
 
-    public ProductsInBasketAdapter(ArrayList<ProductInBasket> products, Context context) {
+    public ProductsInBasketAdapter(ArrayList<ProductInBasket> products, Context context, boolean orders) {
         this.products = products;
         this.context = context;
+        this.orders = orders;
         App.getComponent().inject(this);
     }
 
@@ -57,10 +56,13 @@ public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBask
         holder.city.setText(product.getCity());
         holder.name.setText(product.getName());
         holder.count.setText(product.getCount() + "");
-        holder.delete.setOnClickListener(v -> {
-            fireService.delFromBasket(settings.getString(Settings.USER_ID, "0"), product.getId(), product);
-            localRouter.replaceScreen(Screens.BASKET_SCREEN);
-        });
+        if(!orders) {
+            holder.delete.setOnClickListener(v -> {
+                fireService.delFromBasket(settings.getString(Settings.USER_ID, "0"), product.getId(), product);
+                localRouter.replaceScreen(Screens.BASKET_SCREEN);
+            });
+        }
+
         /*holder.name.setText(product.getName());
         holder.type.setText(product.getType());
         holder.kind.setText(product.getKind());

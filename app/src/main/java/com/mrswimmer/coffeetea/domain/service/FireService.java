@@ -12,8 +12,8 @@ import com.mrswimmer.coffeetea.data.model.Order;
 import com.mrswimmer.coffeetea.data.model.ProductInBasket;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.data.model.Shop;
-import com.mrswimmer.coffeetea.data.model.product.Availability;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Availability;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
 import java.util.ArrayList;
@@ -181,6 +181,11 @@ public class FireService {
 
     public void getOrders(String userId, OrdersCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").child(userId), DataSnapshotMapper.listOf(Order.class))
+                .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void getBasketOfOrders(String userId, String orderId, BasketCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").child(userId).child(orderId).child("products"), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 

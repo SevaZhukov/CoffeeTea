@@ -8,18 +8,12 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrswimmer.coffeetea.App;
-import com.mrswimmer.coffeetea.data.model.Review;
-import com.mrswimmer.coffeetea.data.model.Shop;
 import com.mrswimmer.coffeetea.data.model.User;
-import com.mrswimmer.coffeetea.data.model.product.Availability;
-import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Global;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 

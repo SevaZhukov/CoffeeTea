@@ -15,7 +15,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import butterknife.BindView;

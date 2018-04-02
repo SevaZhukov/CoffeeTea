@@ -15,6 +15,7 @@ import com.mrswimmer.coffeetea.data.model.product.Availability;
 import com.mrswimmer.coffeetea.data.model.product.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FireService {
@@ -157,6 +158,16 @@ public class FireService {
             }
         });
         //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);
+    }
+
+    public void makeOrder(String userId, ArrayList<ProductInBasket> products) {
+        DatabaseReference order = reference.child("orders").child(userId);
+        order.setValue(products);
+    }
+
+    public void clearBasket(String userId) {
+        DatabaseReference prod = reference.child("users").child(userId).child("basket");
+        prod.removeValue();
     }
 
     public interface UserCallBack {

@@ -66,7 +66,7 @@ public class BasketFragment extends BaseFragment implements BasketFragmentView {
 
     @OnClick(R.id.basket_bottom_to_order)
     void onToOrdetClick() {
-
+        presenter.toOrder();
     }
     @Override
     public void setBottomVisible(boolean visible) {

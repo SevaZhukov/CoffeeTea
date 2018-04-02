@@ -1,7 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.activity;
 
 import android.support.design.widget.NavigationView;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -56,6 +55,9 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
                 break;
             case R.id.nav_shops_fragment:
                 router.replaceScreen(Screens.SHOP_SCREEN);
+                break;
+            case R.id.nav_orders_fragment:
+                router.replaceScreen(Screens.ORDERS_SCREEN);
                 break;
             default:
         }

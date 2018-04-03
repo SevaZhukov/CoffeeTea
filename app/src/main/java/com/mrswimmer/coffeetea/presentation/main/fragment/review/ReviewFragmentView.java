@@ -1,6 +1,10 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.review;
 
-import com.arellomobile.mvp.MvpView;
+import com.mrswimmer.coffeetea.presentation.base.BaseView;
+import com.mrswimmer.coffeetea.data.model.Review;
 
-interface ReviewFragmentView extends MvpView {
+import java.util.ArrayList;
+
+interface ReviewFragmentView extends BaseView {
+    void initAdapter(ArrayList<Review> reviews);
 }

@@ -4,14 +4,24 @@ public class Review {
     String description;
     int mark;
     String userId;
+    String username;
 
-    public Review(String description, int mark, String userId) {
+    public Review(String description, int mark, String userId, String username) {
         this.description = description;
         this.mark = mark;
         this.userId = userId;
+        this.username = username;
     }
 
     public Review() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDescription() {
@@ -37,4 +47,6 @@ public class Review {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+
 }

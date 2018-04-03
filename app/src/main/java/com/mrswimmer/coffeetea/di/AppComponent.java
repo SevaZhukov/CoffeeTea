@@ -9,12 +9,18 @@ import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivityPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.basket.recycler.ProductsInBasketAdapter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.recycler.ProductsAdapter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.poduct.ProductFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.order.OrderFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.order.recycler.OrderAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler.ReviewAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.settings.SettingsFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragmentPresenter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
 import javax.inject.Singleton;
@@ -25,11 +31,17 @@ import dagger.Component;
 @Component(modules = {SharedPreferencesModule.class, NavigatorModule.class, FireModule.class})
 public interface AppComponent {
     void inject(SplashActivity splashActivity);
+
     void inject(MainActivity mainActivity);
+
     void inject(AuthActivity authActivity);
+
     void inject(SignInFragmentPresenter signInFragmentPresenter);
+
     void inject(SignUpFragmentPresenter signUpFragmentPresenter);
+
     void inject(MainActivityPresenter mainActivityPresenter);
+
     void inject(CatalogFragmentPresenter catalogFragmentPresenter);
 
     void inject(BasketFragmentPresenter basketFragmentPresenter);
@@ -43,4 +55,16 @@ public interface AppComponent {
     void inject(ReviewAdapter reviewAdapter);
 
     void inject(ReviewFragmentPresenter reviewFragmentPresenter);
+
+    void inject(ShopAdapter shopAdapter);
+
+    void inject(ShopFragmentPresenter shopFragmentPresenter);
+
+    void inject(ProductsInBasketAdapter productsInBasketAdapter);
+
+    void inject(OrderAdapter orderAdapter);
+
+    void inject(OrderFragmentPresenter orderFragmentPresenter);
+
+    void inject(SettingsFragmentPresenter settingsFragmentPresenter);
 }

@@ -2,7 +2,7 @@ package com.mrswimmer.coffeetea.presentation.auth.activity;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.base.BaseActivity;
+import com.mrswimmer.coffeetea.presentation.base.BaseActivity;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 
 public class AuthActivity extends BaseActivity {

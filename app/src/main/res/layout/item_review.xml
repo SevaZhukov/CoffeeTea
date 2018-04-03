@@ -7,7 +7,7 @@
     android:background="@drawable/item_background_transparent">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/item_review_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/prod_image" />
 
     <RatingBar
-        android:id="@+id/item_prod_rate2"
+        android:id="@+id/item_review_rate"
         style="@style/MyRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,8 +29,8 @@
         android:clickable="false"
         android:numStars="5"
         android:rating="3"
-        app:layout_constraintStart_toStartOf="@+id/prod_name"
-        app:layout_constraintTop_toBottomOf="@+id/prod_name" />
+        app:layout_constraintStart_toStartOf="@+id/item_review_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_review_name" />
 
     <ImageView
         android:id="@+id/prod_image"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/prod_name"
+        android:id="@+id/item_review_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

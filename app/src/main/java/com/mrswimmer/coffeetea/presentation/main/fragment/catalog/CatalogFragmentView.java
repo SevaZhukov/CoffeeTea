@@ -1,7 +1,7 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.catalog;
 
 import com.arellomobile.mvp.MvpView;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 
 import java.util.ArrayList;
 

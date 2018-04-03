@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.squareup.picasso.Picasso;

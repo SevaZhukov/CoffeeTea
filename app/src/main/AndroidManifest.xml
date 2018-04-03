@@ -20,6 +20,8 @@
         <activity android:name=".presentation.main.activity.MainActivity" />
         <activity android:name=".presentation.splash.intro.IntroActivity" />
         <activity android:name=".presentation.auth.activity.AuthActivity" />
+        <activity android:name=".presentation.main.fragment.product.choose_count.ChooseCountDialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
     </application>
 
 </manifest>

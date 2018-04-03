@@ -13,6 +13,9 @@
             android:id="@+id/nav_shops_fragment"
             android:title="Магазины" />
         <item
+            android:id="@+id/nav_orders_fragment"
+            android:title="Заказы" />
+        <item
             android:id="@+id/nav_settings_fragment"
             android:title="Настройки" />
     </group>

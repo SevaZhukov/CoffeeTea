@@ -1,28 +1,29 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.poduct;
+package com.mrswimmer.coffeetea.presentation.main.fragment.product;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.base.BaseFragment;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
+import com.mrswimmer.coffeetea.data.model.Product;
+import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProductFragment extends BaseFragment implements ProductFragmentView {
+     boolean fromChooseCount = false;
+
     @InjectPresenter
     ProductFragmentPresenter presenter;
 
@@ -85,9 +86,9 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         name.setText(product.getName());
         type.setText(product.getType());
         kind.setText(product.getKind());
-        weight.setText(product.getWeight()+"");
+        weight.setText(product.getWeight() + "");
         cost.setText(product.getCostString());
-        if(product.getNewCost()>0) {
+        if (product.getNewCost() > 0) {
             cost.setPaintFlags(cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             newCost.setText(product.getNewCostString());
         }
@@ -95,6 +96,40 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         description.setText(product.getDescription());
         findShops.setText(product.findShops());
         findReviews.setText(product.findReviews());
-        presenter.showReviews(product.getReviews());
+    }
+
+    @Override
+    public void showChooseCountDialog(int max) {
+        Intent intent = new Intent(getActivity(), ChooseCountDialog.class);
+        intent.putExtra("max", max);
+        startActivity(intent);
+        fromChooseCount = true;
+    }
+
+    @OnClick(R.id.prod_arrow_reviews)
+    public void onReviewArrowClick() {
+        presenter.gotoReviews();
+    }
+
+    @OnClick(R.id.prod_arrow_shops)
+    public void onShopArrowClick() {
+        presenter.gotoShops();
+    }
+
+    @OnClick(R.id.prod_bottom_in_basket)
+    public void onInBasketClick() {
+        fromChooseCount = true;
+        presenter.chooseCount();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (fromChooseCount && ChooseCountDialog.nextPressed) {
+            int max = ChooseCountDialog.count;
+            ChooseCountDialog.nextPressed = false;
+            presenter.gotoChooseShop(max);
+            fromChooseCount = false;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.data.base;
+package com.mrswimmer.coffeetea.presentation.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

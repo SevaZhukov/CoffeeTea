@@ -12,7 +12,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
@@ -104,11 +104,13 @@ public class FilterFragmentPresenter extends MvpPresenter<FilterFragmentView> {
         fireService.getProducts(false, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
+                Log.i("code", "lenght " + products.size());
                 currentList = filterService.getFilteredProducts(type, sort, inStock, kinds, products);
-                getViewState().setResultOfFilter(readyList.size());
+                Log.i("code", "cur size " + currentList.size());
+                /*getViewState().setResultOfFilter(readyList.size());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(Settings.SORT, true);
-                editor.apply();
+                editor.apply();*/
             }
 
             @Override

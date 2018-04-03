@@ -6,7 +6,7 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mrswimmer.coffeetea.App;
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
@@ -23,7 +23,7 @@ import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> {
-    ArrayList<Product> productsForRecycler = new ArrayList<>();
+
     @Inject
     @Local
     Router router;
@@ -55,7 +55,8 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
     }
 
     public void setProductsWithoutFilters(boolean sale) {
-        productsForRecycler.clear();
+        ArrayList<Product> productsForRecycler = new ArrayList<>();
+        //productsForRecycler.clear();
         fireService.getProducts(sale, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
@@ -80,9 +81,5 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
         editor.putBoolean(Settings.SORT, false);
         editor.apply();
         setProductsWithoutFilters(false);
-    }
-
-    public void gotoProd() {
-        router.navigateTo(Screens.PRODUCT_SCREEN);
     }
 }

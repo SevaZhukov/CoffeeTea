@@ -10,25 +10,13 @@ import com.mrswimmer.coffeetea.R;
 
 public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
-    TextView name;
-    TextView type;
-    TextView kind;
-    TextView weight;
-    TextView inStock;
-    ImageView image;
-    TextView cost;
-    TextView newCost;
+    TextView username;
+    TextView description;
     RatingBar ratingBar;
     public ReviewViewHolder(View v) {
         super(v);
-        name = v.findViewById(R.id.item_prod_name);
-        type = v.findViewById(R.id.item_prod_type);
-        kind = v.findViewById(R.id.item_prod_kind);
-        weight = v.findViewById(R.id.item_prod_weight);
-        inStock = v.findViewById(R.id.item_prod_in_stock);
-        image = v.findViewById(R.id.item_prod_image);
-        cost = v.findViewById(R.id.item_prod_cost);
-        ratingBar = v.findViewById(R.id.item_prod_rate);
-        newCost = v.findViewById(R.id.item_prod_cost_sale);
+        ratingBar = v.findViewById(R.id.item_review_rate);
+        username = v.findViewById(R.id.item_review_name);
+        description = v.findViewById(R.id.item_review_description);
     }
 }

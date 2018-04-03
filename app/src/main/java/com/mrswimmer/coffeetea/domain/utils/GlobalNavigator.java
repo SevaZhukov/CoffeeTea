@@ -2,10 +2,12 @@ package com.mrswimmer.coffeetea.domain.utils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.mrswimmer.coffeetea.data.settings.Screens;
+import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
 
@@ -28,7 +30,7 @@ public class GlobalNavigator implements Navigator {
                 case Screens.AUTH_ACTIVITY:
                     activity.overridePendingTransition(0,0);
                     TaskStackBuilder.create(activity)
-                            .addNextIntentWithParentStack(new Intent(activity, MainActivity.class))
+                            .addNextIntentWithParentStack(new Intent(activity, AuthActivity.class))
                             .addNextIntent(new Intent(activity, IntroActivity.class))
                             .startActivities();
                     activity.finish();
@@ -39,6 +41,17 @@ public class GlobalNavigator implements Navigator {
                     activity.startActivity(i);
                     activity.finish();
                     break;
+                case Screens.SET_MARK_IN_GOOGLE_PLAY:
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=com.mrswimmer.coffeetea"));
+                    activity.startActivity(intent);
+                case Screens.SHARE:
+                    i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(Intent.EXTRA_TEXT, "Присоединяйтесь к Чай и Кофе!");
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Поделиться");
+                    i = Intent.createChooser(i, "С помощью");
+                    activity.startActivity(i);
             }
         }
     }

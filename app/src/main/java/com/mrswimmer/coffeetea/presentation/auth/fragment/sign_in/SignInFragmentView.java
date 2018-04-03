@@ -1,7 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in;
 
-import com.arellomobile.mvp.MvpView;
-import com.mrswimmer.coffeetea.data.base.BaseView;
+import com.mrswimmer.coffeetea.presentation.base.BaseView;
 
 interface SignInFragmentView extends BaseView {
     //void showErrorToast(String error);

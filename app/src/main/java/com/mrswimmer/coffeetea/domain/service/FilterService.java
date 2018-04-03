@@ -1,6 +1,6 @@
 package com.mrswimmer.coffeetea.domain.service;
 
-import com.mrswimmer.coffeetea.data.model.product.Product;
+import com.mrswimmer.coffeetea.data.model.Product;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,8 +35,9 @@ public class FilterService {
             if (product.getTypeId() == type) {
                 for (int j = 0; j < kinds.length; j++) {
                     if (kinds[j] && product.getKindId() == j) {
-                        if (inStock && product.getAvailabilities().size() > 0) {
-                            filteredProductList.add(product);
+                        if (inStock) {
+                            if (product.getAvailabilities().size() > 0)
+                                filteredProductList.add(product);
                         } else
                             filteredProductList.add(product);
                         break;

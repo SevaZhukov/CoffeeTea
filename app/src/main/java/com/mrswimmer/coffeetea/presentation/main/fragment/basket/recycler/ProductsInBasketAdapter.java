@@ -61,6 +61,8 @@ public class ProductsInBasketAdapter extends RecyclerView.Adapter<ProductsInBask
                 fireService.delFromBasket(settings.getString(Settings.USER_ID, "0"), product.getId(), product);
                 localRouter.replaceScreen(Screens.BASKET_SCREEN);
             });
+        } else {
+            holder.delete.setVisibility(View.INVISIBLE);
         }
 
         /*holder.name.setText(product.getName());

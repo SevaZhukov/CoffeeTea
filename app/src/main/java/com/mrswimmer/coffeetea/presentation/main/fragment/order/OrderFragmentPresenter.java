@@ -40,9 +40,14 @@ public class OrderFragmentPresenter extends MvpPresenter<OrderFragmentView> {
         fireService.getOrders(userId, new FireService.OrdersCallback() {
             @Override
             public void onSuccess(List<Order> orders) {
-                ArrayList<Order> arrayList = (ArrayList<Order>) orders;
-                //Log.i("code", orders.get(0).getId()+"");
-                getViewState().initAdapter(arrayList);
+                if(orders.size()>0){
+                    ArrayList<Order> arrayList = (ArrayList<Order>) orders;
+                    //Log.i("code", orders.get(0).getId()+"");
+                    getViewState().initAdapter(arrayList);
+                } else {
+                    getViewState().setEmptyText();
+                }
+
             }
 
             @Override

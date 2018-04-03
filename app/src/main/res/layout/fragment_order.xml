@@ -9,7 +9,7 @@
         android:id="@+id/order_empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="У вас нет заказов"
+        android:text="У вас нет активных заказов"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="20sp"
         android:visibility="invisible"

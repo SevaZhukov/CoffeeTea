@@ -61,7 +61,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     }
 
     void deleteOrder(Order order) {
-
+        String userId = settings.getString(Settings.USER_ID, "0");
+        fireService.deleteOrder(userId, order);
+        localRouter.navigateTo(Screens.ORDERS_SCREEN);
     }
 
     void showOrder(Order order) {

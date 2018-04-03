@@ -59,6 +59,9 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
             case R.id.nav_orders_fragment:
                 router.replaceScreen(Screens.ORDERS_SCREEN);
                 break;
+            case R.id.nav_settings_fragment:
+                router.replaceScreen(Screens.SETTINGS_SCREEN);
+                break;
             default:
         }
         menuItem.setChecked(true);

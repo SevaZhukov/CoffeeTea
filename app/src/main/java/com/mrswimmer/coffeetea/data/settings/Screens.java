@@ -24,4 +24,5 @@ public interface Screens {
     String SHOP_SCREEN_CHOOSE = "shop choose";
     String ORDERS_SCREEN = "orders screen";
     String BASKET_OF_ORDER_SCREEN = "boo screen";
+    String SETTINGS_SCREEN = "settings screen";
 }

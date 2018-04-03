@@ -54,7 +54,7 @@ public class FireService {
     }
 
     public boolean checkLogIn() {
-        return null == auth.getCurrentUser();
+        return null != auth.getCurrentUser();
     }
 
     public void getReviews(String id, boolean shop, ReviewsCallback callback) {
@@ -70,11 +70,6 @@ public class FireService {
 
     public void getShops(ShopsCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("shops"), DataSnapshotMapper.listOf(Shop.class))
-                .subscribe(callback::onSuccess, callback::onError);
-    }
-
-    public void getShopsById(String shopId, ShopCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("shops").child(shopId), Shop.class)
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
@@ -156,16 +151,10 @@ public class FireService {
             public void onSuccess(List<Availability> availabilities) {
                 Log.i("code", "restore suc");
                 DatabaseReference avail = reference.child("products").child(product.getProductId()).child("availabilities").child(availabilities.get(0).getId()).child("quantity");
-                avail.setValue(availabilities.get(0).getQuantity()+product.getCount());
+                avail.setValue(availabilities.get(0).getQuantity() + product.getCount());
             }
         });
         //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);
-    }
-
-    public void makeOrder(String userId, ArrayList<ProductInBasket> products, int sum, Date date) {
-        DatabaseReference order = reference.child("orders").child(userId);
-        order.setValue(products);
-
     }
 
     public void clearBasket(String userId) {
@@ -187,6 +176,14 @@ public class FireService {
     public void getBasketOfOrders(String userId, String orderId, BasketCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").child(userId).child(orderId).child("products"), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
+    }
+
+    public void deleteOrder(String userId, Order order) {
+        for(int i=0; i<order.getProducts().size(); i++) {
+            restoreProducts(order.getProducts().get(i));
+        }
+        DatabaseReference or = reference.child("orders").child(userId).child(order.getId());
+        or.removeValue();
     }
 
     public interface UserCallBack {
@@ -242,6 +239,7 @@ public class FireService {
 
         void onError(Throwable e);
     }
+
     public interface OrdersCallback {
         void onSuccess(List<Order> orders);
 

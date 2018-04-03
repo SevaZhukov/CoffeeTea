@@ -127,6 +127,7 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         super.onResume();
         if (fromChooseCount && ChooseCountDialog.nextPressed) {
             int max = ChooseCountDialog.count;
+            ChooseCountDialog.nextPressed = false;
             presenter.gotoChooseShop(max);
             fromChooseCount = false;
         }

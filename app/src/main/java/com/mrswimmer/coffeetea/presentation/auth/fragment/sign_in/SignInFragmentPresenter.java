@@ -49,6 +49,7 @@ public class SignInFragmentPresenter extends MvpPresenter<SignInFragmentView> {
                     public void onSuccess(User user) {
                         SharedPreferences.Editor editor = settings.edit();
                         editor.putString(Settings.USER_ID, user.getId());
+                        editor.putString(Settings.USERNAME, user.getUsername());
                         editor.apply();
                         Log.i("code", "userid " + user.getId());
                         globalRouter.navigateTo(Screens.MAIN_ACTIVITY);

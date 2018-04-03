@@ -31,8 +31,6 @@ public class ProductsInBasketViewHolder extends RecyclerView.ViewHolder {
         city = v.findViewById(R.id.item_basket_city);
         adress = v.findViewById(R.id.item_basket_adress);
         count = v.findViewById(R.id.item_basket_count);
-        up = v.findViewById(R.id.item_basket_up);
-        down = v.findViewById(R.id.item_basket_down);
         delete = v.findViewById(R.id.item_basket_delete);
 
     }

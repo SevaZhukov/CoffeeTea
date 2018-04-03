@@ -7,16 +7,15 @@ import android.support.v4.app.FragmentManager;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_in.SignInFragment;
 import com.mrswimmer.coffeetea.presentation.auth.fragment.sign_up.SignUpFragment;
-import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.info.InfoFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.basket.BasketFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.catalog.CatalogFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.filter.FilterFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.order.OrderFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragment;
+import com.mrswimmer.coffeetea.presentation.main.fragment.settings.SettingsFragment;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragment;
-
-import java.util.ArrayList;
 
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
@@ -91,6 +90,20 @@ public class LocalNavigator extends SupportFragmentNavigator {
                 BasketFragment basketFragment = new BasketFragment();
                 basketFragment.setArguments(booBundle);
                 return basketFragment;
+            case Screens.SETTINGS_SCREEN:
+                return new SettingsFragment();
+            case Screens.ABOUT_COMPANY:
+                Bundle infoBundle = new Bundle();
+                infoBundle.putInt("text", (Integer) data);
+                InfoFragment infoFragment = new InfoFragment();
+                infoFragment.setArguments(infoBundle);
+                return infoFragment;
+            case Screens.INSTRUCTION:
+                Bundle instructionBundle = new Bundle();
+                instructionBundle.putInt("text", (Integer) data);
+                InfoFragment instructionFragment = new InfoFragment();
+                instructionFragment.setArguments(instructionBundle);
+                return instructionFragment;
             default:
                 return new CatalogFragment();
         }

@@ -7,4 +7,5 @@ public interface Settings {
     String SORTED_SET = "sorted set";
     String SORT = "sort";
     String USER_ID = "user id";
+    String USERNAME = "username";
 }

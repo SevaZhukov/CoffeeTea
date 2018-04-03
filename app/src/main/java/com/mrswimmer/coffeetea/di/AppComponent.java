@@ -18,6 +18,7 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.order.recycler.OrderAd
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.ReviewFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler.ReviewAdapter;
+import com.mrswimmer.coffeetea.presentation.main.fragment.settings.SettingsFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
@@ -64,4 +65,6 @@ public interface AppComponent {
     void inject(OrderAdapter orderAdapter);
 
     void inject(OrderFragmentPresenter orderFragmentPresenter);
+
+    void inject(SettingsFragmentPresenter settingsFragmentPresenter);
 }

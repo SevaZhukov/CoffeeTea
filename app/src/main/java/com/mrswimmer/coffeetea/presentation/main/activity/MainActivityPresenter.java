@@ -67,4 +67,8 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
         menuItem.setChecked(true);
         getViewState().checkDrawerItem(menuItem);
     }
+
+    public void share() {
+        globalRouter.navigateTo(Screens.SHARE);
+    }
 }

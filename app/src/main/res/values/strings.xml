@@ -5,4 +5,6 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="prod_bottom_do_in_basket">В корзину</string>
+    <string name="about_company">Какая-то инфа о компании</string>
+    <string name="instruction">Инструкция</string>
 </resources>

@@ -186,6 +186,10 @@ public class FireService {
         or.removeValue();
     }
 
+    public void signOut() {
+        auth.signOut();
+    }
+
     public interface UserCallBack {
         void onSuccess(User user);
 

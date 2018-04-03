@@ -1,5 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.activity;
 
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -8,12 +9,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.App;
 import com.mrswimmer.coffeetea.R;
+import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.presentation.base.BaseActivity;
 import com.mrswimmer.coffeetea.data.settings.Screens;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
@@ -21,6 +29,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     @InjectPresenter
     MainActivityPresenter presenter;
     private ActionBarDrawerToggle drawerToggle;
+
+    @Inject
+    SharedPreferences settings;
 
     @ProvidePresenter
     public MainActivityPresenter presenter() {
@@ -44,6 +55,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         headerLayout = navigationView.getHeaderView(0);
         drawerToggle = setupDrawerToggle();
         drawerLayout.addDrawerListener(drawerToggle);
+        TextView username = headerLayout.findViewById(R.id.header_username);
+        ImageView share = headerLayout.findViewById(R.id.header_share);
+        username.setText(settings.getString(Settings.USERNAME, "user"));
+        share.setOnClickListener(v -> presenter.share());
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {

@@ -51,6 +51,6 @@ public class ShopFragment extends BaseFragment implements ShopFragmentView {
 
     @Override
     public void initAdapter(ArrayList<Shop> shops, boolean choose) {
-        recyclerView.setAdapter(new ShopAdapter(shops, choose));
+        recyclerView.setAdapter(new ShopAdapter(shops, choose, getActivity()));
     }
 }

@@ -8,12 +8,13 @@ public class Order {
     int sum;
     Date date;
     String id;
+    String userId;
 
-    public Order(ArrayList<ProductInBasket> products, int sum, Date date, String id) {
+    public Order(ArrayList<ProductInBasket> products, int sum, Date date, String userId) {
         this.products = products;
         this.sum = sum;
         this.date = date;
-        this.id = id;
+        this.userId = userId;
     }
 
     public Order(ArrayList<ProductInBasket> products, int sum, Date date) {
@@ -23,6 +24,14 @@ public class Order {
     }
 
     public Order() {
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public ArrayList<ProductInBasket> getProducts() {

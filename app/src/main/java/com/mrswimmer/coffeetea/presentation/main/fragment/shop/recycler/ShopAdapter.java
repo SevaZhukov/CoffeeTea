@@ -1,5 +1,6 @@
 package com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -20,6 +21,7 @@ import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Router;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
+    private final Context context;
     private ArrayList<Shop> shops = new ArrayList<>();
 
     @Inject
@@ -43,9 +46,10 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
 
     boolean choose = false;
 
-    public ShopAdapter(ArrayList<Shop> shops, boolean choose) {
+    public ShopAdapter(ArrayList<Shop> shops, boolean choose, Context context) {
         this.shops = shops;
         this.choose = choose;
+        this.context = context;
         App.getComponent().inject(this);
     }
 
@@ -66,6 +70,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         holder.reviews.setText(content);
         holder.ratingBar.setRating(shop.getRate());
+        Picasso.with(context)
+                .load(shop.getImages().get(0))
+                .into(holder.image);
         holder.reviews.setOnClickListener(v -> localRouter.navigateTo(Screens.REVIEWS_SCREEN_FOR_SHOP, shop.getId()));
         if (choose)
             holder.itemView.setOnClickListener(v -> {

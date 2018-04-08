@@ -45,7 +45,7 @@ public class SettingsFragmentPresenter extends MvpPresenter<SettingsFragmentView
     public void setMark() {
         globalRouter.navigateTo(Screens.SET_MARK_IN_GOOGLE_PLAY);
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("market://details?id=com.membattle"));
+        intent.setData(Uri.parse("market://details?id=com.mrswimmer.coffeetea"));
     }
 
     public void clearPrefs() {

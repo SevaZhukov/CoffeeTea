@@ -2,6 +2,7 @@ package com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     TextView hours;
     TextView reviews;
     RatingBar ratingBar;
+    public ImageView image;
 
     public ShopViewHolder(View v) {
         super(v);
@@ -22,5 +24,6 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
         hours = v.findViewById(R.id.item_shop_hours_work);
         reviews = v.findViewById(R.id.item_shop_reviews);
         ratingBar = v.findViewById(R.id.item_shop_rate);
+        image = v.findViewById(R.id.item_shop_image);
     }
 }

@@ -73,8 +73,8 @@ public class BasketFragmentPresenter extends MvpPresenter<BasketFragmentView> {
     public void toOrder() {
         String userId = settings.getString(Settings.USER_ID, "0");
         Date date = new Date();
-        Order order = new Order(arrayList, sum, date);
-        fireService.makeOrder(userId, order);
+        Order order = new Order(arrayList, sum, date, userId);
+        fireService.makeOrder(order);
         fireService.clearBasket(userId);
         localRouter.replaceScreen(Screens.ORDERS_SCREEN);
     }

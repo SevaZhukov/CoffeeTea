@@ -162,14 +162,14 @@ public class FireService {
         prod.removeValue();
     }
 
-    public void makeOrder(String userId, Order order) {
-        DatabaseReference dref = reference.child("orders").child(userId).push();
+    public void makeOrder(Order order) {
+        DatabaseReference dref = reference.child("orders").push();
         order.setId(dref.getKey());
         dref.setValue(order);
     }
 
     public void getOrders(String userId, OrdersCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").child(userId), DataSnapshotMapper.listOf(Order.class))
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("orders").orderByChild("userId").equalTo(userId), DataSnapshotMapper.listOf(Order.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 

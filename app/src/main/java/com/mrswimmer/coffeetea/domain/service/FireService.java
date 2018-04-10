@@ -16,8 +16,6 @@ import com.mrswimmer.coffeetea.data.model.Availability;
 import com.mrswimmer.coffeetea.data.model.Product;
 import com.mrswimmer.coffeetea.data.model.User;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class FireService {
@@ -43,8 +41,8 @@ public class FireService {
                 .subscribe(callBack::onSuccess, callBack::onError);
     }
 
-    public void getID(String email, UserCallBack callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").orderByChild("mail").equalTo(email), User.class)
+    public void getID(String email, UsersCallBack callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").orderByChild("mail").equalTo(email), DataSnapshotMapper.listOf(User.class))
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
@@ -93,7 +91,6 @@ public class FireService {
                 .subscribe(callback::onSuccess, callback::onError);
     }
 
-    //decision dupl problem
     public void checkOnExistThisProductInBasket(String userId, ProductInBasket productInBasket, BasketCallback callback) {
         RxFirebaseDatabase.observeSingleValueEvent(reference.child("users").child(userId).child("basket").orderByChild("productId").equalTo(productInBasket.getProductId()), DataSnapshotMapper.listOf(ProductInBasket.class))
                 .subscribe(callback::onSuccess, callback::onError);
@@ -104,34 +101,37 @@ public class FireService {
         newProd.setValue(count);
     }
 
-    public void getAvals(String prodId, String shopId, AvailabilityCallback callback) {
-        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(prodId).child("availabilities").orderByChild("shopId").equalTo(shopId), DataSnapshotMapper.listOf(Availability.class))
-                .subscribe(callback::onSuccess, callback::onError);
-    }
-
     public void deleteProd(String prodId, String shopId, int count) {
-        Log.i("code", "del");
-        getAvals(prodId, shopId, new AvailabilityCallback() {
-            @Override
-            public void onSuccess(List<Availability> availabilities) {
-                Log.i("code", "del from " + availabilities.get(0).getQuantity());
-                String id = availabilities.get(0).getId();
-                DatabaseReference avail = reference.child("products").child(prodId).child("availabilities").child(id);
-                if (availabilities.get(0).getQuantity() - count == 0) {
-                    avail.removeValue();
-                } else {
-                    avail = avail.child("quantity");
-                    avail.setValue(availabilities.get(0).getQuantity() - count);
-                }
-
-            }
-
+        Log.i("code", "del  " + prodId + " " + shopId + " " + count);
+        getAllAvails(prodId, new AvailabilityCallback() {
             @Override
             public void onError(Throwable e) {
-                Log.i("code", "del from error " + e.getMessage());
+                Log.i("code", "all avails error " + e.getMessage());
             }
 
+            @Override
+            public void onSuccess(List<Availability> availabilities) {
+                Log.i("code", "all avails " + availabilities.size());
+                boolean exist = false;
+                for (int i = 0; i < availabilities.size(); i++) {
+                    Availability availability = availabilities.get(i);
+                    if (availability.getShopId().equals(shopId)) {
+                        if (availabilities.get(i).getQuantity() - count == 0) {
+                            availabilities.remove(i);
+                        } else
+                            availabilities.get(i).setQuantity(availability.getQuantity() - count);
+                        break;
+                    }
+                }
+                DatabaseReference avail = reference.child("products").child(prodId).child("availabilities");
+                avail.setValue(availabilities);
+            }
         });
+    }
+
+    public void getAllAvails(String prodId, AvailabilityCallback callback) {
+        RxFirebaseDatabase.observeSingleValueEvent(reference.child("products").child(prodId).child("availabilities"), DataSnapshotMapper.listOf(Availability.class))
+                .subscribe(callback::onSuccess, callback::onError);
     }
 
     public void delFromBasket(String userId, String id, ProductInBasket product) {
@@ -141,20 +141,31 @@ public class FireService {
     }
 
     public void restoreProducts(ProductInBasket product) {
-        getAvals(product.getProductId(), product.getShopId(), new AvailabilityCallback() {
+        getAllAvails(product.getProductId(), new AvailabilityCallback() {
             @Override
             public void onError(Throwable e) {
-                Log.i("code", "restore error " + e.getMessage());
+                Log.i("code", "all avails error " + e.getMessage());
             }
 
             @Override
             public void onSuccess(List<Availability> availabilities) {
-                Log.i("code", "restore suc");
-                DatabaseReference avail = reference.child("products").child(product.getProductId()).child("availabilities").child(availabilities.get(0).getId()).child("quantity");
-                avail.setValue(availabilities.get(0).getQuantity() + product.getCount());
+                Log.i("code", "all avails " + availabilities.size());
+                boolean exist = false;
+                for (int i = 0; i < availabilities.size(); i++) {
+                    Availability availability = availabilities.get(i);
+                    if (availability.getShopId().equals(product.getShopId())) {
+                        availabilities.get(i).setQuantity(availability.getQuantity() + product.getCount());
+                        exist = true;
+                        break;
+                    }
+                }
+                if (!exist) {
+                    availabilities.add(new Availability(product.getCount(), product.getShopId()));
+                }
+                DatabaseReference avail = reference.child("products").child(product.getProductId()).child("availabilities");
+                avail.setValue(availabilities);
             }
         });
-        //DatabaseReference prod = reference.child("products").child(product.getProductId()).child("").child(id);
     }
 
     public void clearBasket(String userId) {
@@ -179,7 +190,7 @@ public class FireService {
     }
 
     public void deleteOrder(String userId, Order order) {
-        for(int i=0; i<order.getProducts().size(); i++) {
+        for (int i = 0; i < order.getProducts().size(); i++) {
             restoreProducts(order.getProducts().get(i));
         }
         DatabaseReference or = reference.child("orders").child(userId).child(order.getId());
@@ -190,8 +201,8 @@ public class FireService {
         auth.signOut();
     }
 
-    public interface UserCallBack {
-        void onSuccess(User user);
+    public interface UsersCallBack {
+        void onSuccess(List<User> users);
 
         void onError(Throwable e);
     }
@@ -222,12 +233,6 @@ public class FireService {
 
     public interface ShopsCallback {
         void onSuccess(List<Shop> shops);
-
-        void onError(Throwable e);
-    }
-
-    public interface ShopCallback {
-        void onSuccess(Shop shop);
 
         void onError(Throwable e);
     }

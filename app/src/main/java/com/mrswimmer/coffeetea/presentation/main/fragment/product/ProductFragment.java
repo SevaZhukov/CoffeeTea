@@ -111,10 +111,10 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         presenter.gotoReviews();
     }
 
-    @OnClick(R.id.prod_arrow_shops)
+    /*@OnClick(R.id.prod_arrow_shops)
     public void onShopArrowClick() {
         presenter.gotoShops();
-    }
+    }*/
 
     @OnClick(R.id.prod_bottom_in_basket)
     public void onInBasketClick() {

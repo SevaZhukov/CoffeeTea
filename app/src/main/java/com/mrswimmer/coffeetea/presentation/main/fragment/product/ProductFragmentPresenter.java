@@ -53,7 +53,6 @@ public class ProductFragmentPresenter extends MvpPresenter<ProductFragmentView> 
     }
 
     public void gotoReviews() {
-
         router.navigateTo(Screens.REVIEWS_SCREEN, id);
     }
 

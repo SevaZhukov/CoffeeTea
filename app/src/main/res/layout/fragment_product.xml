@@ -67,6 +67,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/prod_find_shops"
                     app:layout_constraintStart_toEndOf="@+id/prod_find_shops"
                     app:layout_constraintTop_toTopOf="@+id/prod_find_shops"

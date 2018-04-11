@@ -13,6 +13,12 @@ public class Availability {
         this.shopId = shopId;
     }
 
+    public Availability(int quantity, String shopId, String id) {
+        this.quantity = quantity;
+        this.shopId = shopId;
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }

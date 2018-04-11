@@ -7,4 +7,6 @@ import java.util.ArrayList;
 
 interface ReviewFragmentView extends BaseView {
     void initAdapter(ArrayList<Review> reviews);
+
+    void setTextOnButton(String message);
 }

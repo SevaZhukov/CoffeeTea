@@ -16,7 +16,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.Product;
-import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
+import com.mrswimmer.coffeetea.presentation.main.fragment.choose_count.ChooseCountDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -111,10 +111,10 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         presenter.gotoReviews();
     }
 
-    @OnClick(R.id.prod_arrow_shops)
+    /*@OnClick(R.id.prod_arrow_shops)
     public void onShopArrowClick() {
         presenter.gotoShops();
-    }
+    }*/
 
     @OnClick(R.id.prod_bottom_in_basket)
     public void onInBasketClick() {

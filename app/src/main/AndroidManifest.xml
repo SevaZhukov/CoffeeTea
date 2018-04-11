@@ -20,7 +20,9 @@
         <activity android:name=".presentation.main.activity.MainActivity" />
         <activity android:name=".presentation.splash.intro.IntroActivity" />
         <activity android:name=".presentation.auth.activity.AuthActivity" />
-        <activity android:name=".presentation.main.fragment.product.choose_count.ChooseCountDialog"
+        <activity android:name=".presentation.main.fragment.choose_count.ChooseCountDialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity android:name=".presentation.main.set_review.SetReviewDialog"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
     </application>
 

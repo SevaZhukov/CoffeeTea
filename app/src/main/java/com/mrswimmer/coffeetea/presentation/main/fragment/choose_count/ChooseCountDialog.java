@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count;
+package com.mrswimmer.coffeetea.presentation.main.fragment.choose_count;
 
 import android.content.Intent;
 import android.os.Bundle;

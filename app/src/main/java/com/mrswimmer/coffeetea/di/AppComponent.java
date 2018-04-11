@@ -21,6 +21,7 @@ import com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler.Review
 import com.mrswimmer.coffeetea.presentation.main.fragment.settings.SettingsFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.ShopFragmentPresenter;
 import com.mrswimmer.coffeetea.presentation.main.fragment.shop.recycler.ShopAdapter;
+import com.mrswimmer.coffeetea.presentation.main.set_review.SetReviewDialog;
 import com.mrswimmer.coffeetea.presentation.splash.SplashActivity;
 
 import javax.inject.Singleton;
@@ -67,4 +68,6 @@ public interface AppComponent {
     void inject(OrderFragmentPresenter orderFragmentPresenter);
 
     void inject(SettingsFragmentPresenter settingsFragmentPresenter);
+
+    void inject(SetReviewDialog setReviewDialog);
 }

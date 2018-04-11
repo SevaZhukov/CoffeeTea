@@ -201,6 +201,32 @@ public class FireService {
         auth.signOut();
     }
 
+    public void setReview(String id, Review review) {
+        getReviews(id, false, new ReviewsCallback() {
+            boolean exist = false;
+            @Override
+            public void onSuccess(List<Review> reviews) {
+                for (int i=0; i<reviews.size(); i++) {
+                    if(reviews.get(i).getUserId().equals(review.getUserId())) {
+                        reviews.get(i).setMark(review.getMark());
+                        reviews.get(i).setDescription(review.getDescription());
+                        exist = true;
+                    }
+                }
+                if(!exist) {
+                    reviews.add(review);
+                }
+                DatabaseReference ref = reference.child("products").child(id).child("reviews");
+                ref.setValue(reviews);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+    }
+
     public interface UsersCallBack {
         void onSuccess(List<User> users);
 

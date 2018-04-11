@@ -20,7 +20,7 @@ import com.mrswimmer.coffeetea.data.settings.Settings;
 import com.mrswimmer.coffeetea.di.qualifier.Local;
 import com.mrswimmer.coffeetea.domain.service.FireService;
 import com.mrswimmer.coffeetea.presentation.main.fragment.product.ProductFragmentPresenter;
-import com.mrswimmer.coffeetea.presentation.main.fragment.product.choose_count.ChooseCountDialog;
+import com.mrswimmer.coffeetea.presentation.main.fragment.choose_count.ChooseCountDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

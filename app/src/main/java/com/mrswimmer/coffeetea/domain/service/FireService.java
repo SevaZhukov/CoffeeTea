@@ -201,8 +201,8 @@ public class FireService {
         auth.signOut();
     }
 
-    public void setReview(String id, Review review) {
-        getReviews(id, false, new ReviewsCallback() {
+    public void setReview(String id, Review review, boolean shop) {
+        getReviews(id, shop, new ReviewsCallback() {
             boolean exist = false;
             @Override
             public void onSuccess(List<Review> reviews) {
@@ -216,7 +216,13 @@ public class FireService {
                 if(!exist) {
                     reviews.add(review);
                 }
-                DatabaseReference ref = reference.child("products").child(id).child("reviews");
+                String subref;
+                if (shop) {
+                    subref = "shops";
+                } else {
+                    subref = "products";
+                }
+                DatabaseReference ref = reference.child(subref).child(id).child("reviews");
                 ref.setValue(reviews);
             }
 

@@ -43,7 +43,7 @@ public class SetReviewDialog extends AppCompatActivity {
     @OnClick(R.id.dialog_review_next)
     void onNextClick() {
         Review review = new Review(description.getText().toString(), (int) rate.getRating(), settings.getString(Settings.USER_ID, "0"), settings.getString(Settings.USERNAME, "0"));
-        fireService.setReview(ReviewFragmentPresenter.id, review);
+        fireService.setReview(ReviewFragmentPresenter.id, review, ReviewFragmentPresenter.shop);
         finish();
     }
 

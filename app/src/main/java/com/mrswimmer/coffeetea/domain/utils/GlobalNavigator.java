@@ -9,7 +9,10 @@ import android.util.Log;
 import com.mrswimmer.coffeetea.data.settings.Screens;
 import com.mrswimmer.coffeetea.presentation.auth.activity.AuthActivity;
 import com.mrswimmer.coffeetea.presentation.main.activity.MainActivity;
+import com.mrswimmer.coffeetea.presentation.main.fragment.order.zoom.ZoomActivity;
 import com.mrswimmer.coffeetea.presentation.splash.intro.IntroActivity;
+
+import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.commands.Command;
@@ -52,6 +55,9 @@ public class GlobalNavigator implements Navigator {
                     i.putExtra(Intent.EXTRA_SUBJECT, "Поделиться");
                     i = Intent.createChooser(i, "С помощью");
                     activity.startActivity(i);
+                case Screens.ZOOM_QR:
+                    Intent qrintent = new Intent(activity, ZoomActivity.class);
+                    activity.startActivity(qrintent);
             }
         }
     }

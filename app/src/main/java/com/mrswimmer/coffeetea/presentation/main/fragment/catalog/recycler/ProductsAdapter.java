@@ -58,7 +58,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
             holder.newCost.setText(product.getNewCostString());
             holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
-        //holder.cost.setPaintFlags(holder.cost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @Override

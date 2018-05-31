@@ -7,9 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class FilterService {
-    List<Product> products;
-
-
     public FilterService() {
 
     }

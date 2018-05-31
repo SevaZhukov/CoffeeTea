@@ -1,4 +1,4 @@
-package com.mrswimmer.coffeetea.presentation.main.set_review;
+package com.mrswimmer.coffeetea.presentation.main.fragment.set_review;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

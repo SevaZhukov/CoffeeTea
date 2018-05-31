@@ -14,7 +14,7 @@ import com.mrswimmer.coffeetea.R;
 import com.mrswimmer.coffeetea.presentation.base.BaseFragment;
 import com.mrswimmer.coffeetea.data.model.Review;
 import com.mrswimmer.coffeetea.presentation.main.fragment.review.recycler.ReviewAdapter;
-import com.mrswimmer.coffeetea.presentation.main.set_review.SetReviewDialog;
+import com.mrswimmer.coffeetea.presentation.main.fragment.set_review.SetReviewDialog;
 
 import java.util.ArrayList;
 

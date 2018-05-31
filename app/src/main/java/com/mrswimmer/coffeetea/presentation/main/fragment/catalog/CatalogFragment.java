@@ -34,7 +34,6 @@ public class CatalogFragment extends BaseFragment implements CatalogFragmentView
 
     @BindView(R.id.catalog_drop_filter)
     Button dropButton;
-
     @BindView(R.id.catalog_recycler)
     RecyclerView recyclerView;
 
@@ -45,7 +44,6 @@ public class CatalogFragment extends BaseFragment implements CatalogFragmentView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         Bundle bundle = this.getArguments();
-        //Log.i("code", "bundle " + bundle);
         boolean sale = false;
         if (bundle != null) {
             sale = bundle.getBoolean("sale", false);
@@ -69,7 +67,6 @@ public class CatalogFragment extends BaseFragment implements CatalogFragmentView
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_catalog_filters:
-                //presenter.gotoProd();
                 presenter.gotoFilters();
                 return true;
             default:

@@ -16,8 +16,10 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     TextView cost;
     Button show;
     ImageView delete;
+    ImageView qr;
     public OrderViewHolder(View v) {
         super(v);
+        qr = v.findViewById(R.id.item_order_qr);
         id = v.findViewById(R.id.item_order_id);
         date = v.findViewById(R.id.item_order_date);
         cost = v.findViewById(R.id.item_order_cost);

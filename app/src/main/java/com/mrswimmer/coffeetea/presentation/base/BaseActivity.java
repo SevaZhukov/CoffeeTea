@@ -64,7 +64,6 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseV
     protected void onPause() {
         super.onPause();
         localNavigatorHolder.removeNavigator();
-
     }
 
     protected abstract void injectDependencies();

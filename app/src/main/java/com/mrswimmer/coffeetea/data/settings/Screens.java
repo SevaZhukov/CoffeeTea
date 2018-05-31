@@ -29,4 +29,5 @@ public interface Screens {
     String SHARE ="share";
     String ABOUT_COMPANY = "about company";
     String INSTRUCTION = "instruction";
+    String ZOOM_QR = "zoom qr";
 }

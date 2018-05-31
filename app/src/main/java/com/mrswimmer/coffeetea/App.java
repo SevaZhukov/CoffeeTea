@@ -20,6 +20,6 @@ public class App extends Application {
         component = DaggerAppComponent.builder()
                 .sharedPreferencesModule(new SharedPreferencesModule(getApplicationContext()))
                 .build();
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }

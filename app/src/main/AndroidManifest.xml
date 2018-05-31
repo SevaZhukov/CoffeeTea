@@ -22,7 +22,9 @@
         <activity android:name=".presentation.auth.activity.AuthActivity" />
         <activity android:name=".presentation.main.fragment.choose_count.ChooseCountDialog"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-        <activity android:name=".presentation.main.set_review.SetReviewDialog"
+        <activity android:name=".presentation.main.fragment.set_review.SetReviewDialog"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity android:name=".presentation.main.fragment.order.zoom.ZoomActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
     </application>
 

@@ -43,7 +43,6 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
     }
 
     public void setProductsForRecycler(boolean sale) {
-        Log.i("code", "sort " + settings.getBoolean(Settings.SORT, false));
         if (sale) {
             setProductsWithoutFilters(true);
         } else if (settings.getBoolean(Settings.SORT, false)) {
@@ -56,16 +55,13 @@ public class CatalogFragmentPresenter extends MvpPresenter<CatalogFragmentView> 
 
     public void setProductsWithoutFilters(boolean sale) {
         ArrayList<Product> productsForRecycler = new ArrayList<>();
-        //productsForRecycler.clear();
         fireService.getProducts(sale, new FireService.ProductsCallback() {
             @Override
             public void onSuccess(List<Product> products) {
-                Log.i("code", "set " + products.size());
                 for (int i = 0; i < products.size(); i++) {
                     productsForRecycler.add(products.get(i));
                 }
                 getViewState().initAdapter(productsForRecycler);
-                Log.i("code", "setProd " + productsForRecycler.size());
             }
 
             @Override
